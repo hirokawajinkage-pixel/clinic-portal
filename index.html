@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ひろかわ腎クリニック 業務ポータル</title>
+<style>
+:root {
+  --navy:       #1B3A6B;
+  --navy-mid:   #2952A3;
+  --navy-dark:  #122858;
+  --blue-pale:  #EFF6FF;
+  --blue-mid:   #BFDBFE;
+  --blue-acc:   #3B82F6;
+  --white:      #FFFFFF;
+  --gray-50:    #F8FAFC;
+  --gray-100:   #F1F5F9;
+  --gray-200:   #E2E8F0;
+  --gray-400:   #94A3B8;
+  --gray-600:   #475569;
+  --gray-800:   #1E293B;
+  --green:      #059669;
+  --green-pale: #D1FAE5;
+  --orange:     #D97706;
+  --orange-pale:#FEF3C7;
+  --red:        #DC2626;
+  --red-pale:   #FEE2E2;
+  --r: 10px;
+  --r-lg: 14px;
+  --sh: 0 2px 8px rgba(27,58,107,.10);
+  --sh-lg: 0 8px 30px rgba(27,58,107,.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+  background:var(--gray-100);color:var(--gray-800);font-size:14px;min-height:100vh;
+}
+
+/* ── LOGIN ─────────────────────────────── */
+#loginPage{
+  min-height:100vh;
+  background:linear-gradient(150deg,var(--navy-dark) 0%,var(--navy-mid) 100%);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.lcard{
+  background:white;border-radius:var(--r-lg);padding:40px 36px;
+  width:100%;max-width:380px;box-shadow:var(--sh-lg);
+}
+.llogo{
+  width:60px;height:60px;background:var(--navy);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;margin:0 auto 18px;
+}
+.ltitle{font-size:19px;font-weight:700;color:var(--navy);text-align:center;margin-bottom:2px;}
+.lsub{font-size:12px;color:var(--gray-400);text-align:center;margin-bottom:28px;}
+.flabel{display:block;font-size:11px;font-weight:700;color:var(--gray-600);
+  letter-spacing:.05em;margin-bottom:5px;text-transform:uppercase;}
+.fctl{
+  width:100%;padding:10px 13px;border:1.5px solid var(--gray-200);
+  border-radius:var(--r);font-size:14px;color:var(--gray-800);
+  background:white;appearance:none;transition:border-color .2s,box-shadow .2s;
+}
+.fctl:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(27,58,107,.1);}
+.fgroup{margin-bottom:14px;}
+.btn-login{
+  width:100%;padding:12px;background:var(--navy);color:white;
+  border:none;border-radius:var(--r);font-size:15px;font-weight:700;
+  cursor:pointer;margin-top:6px;transition:background .2s,transform .1s;letter-spacing:.02em;
+}
+.btn-login:hover{background:var(--navy-dark);}
+.btn-login:active{transform:scale(.99);}
+.lerr{
+  background:var(--red-pale);color:var(--red);padding:10px 13px;
+  border-radius:var(--r);font-size:13px;margin-top:10px;display:none;
+}
+
+/* ── APP SHELL ─────────────────────────── */
+#appPage{display:none;min-height:100vh;}
+.app{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sb{
+  width:220px;background:var(--navy);flex-shrink:0;
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;height:100vh;z-index:100;
+  transition:transform .3s;
+}
+.sb-head{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sb-clinic{font-size:13px;font-weight:700;color:white;line-height:1.45;}
+.sb-ver{font-size:10px;color:rgba(255,255,255,.4);margin-top:3px;}
+.sb-user{
+  margin:10px;padding:10px 12px;
+  background:rgba(255,255,255,.1);border-radius:var(--r);
+  font-size:12px;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:7px;
+}
+.sb-nav{flex:1;padding:6px 0;overflow-y:auto;}
+.ni{
+  display:flex;align-items:center;gap:10px;padding:11px 16px;
+  color:rgba(255,255,255,.7);cursor:pointer;font-size:13px;font-weight:500;
+  border-left:3px solid transparent;transition:all .15s;
+}
+.ni:hover{background:rgba(255,255,255,.1);color:white;}
+.ni.active{background:rgba(255,255,255,.15);color:white;border-left-color:#60A5FA;}
+.ni-ic{font-size:15px;width:20px;text-align:center;}
+.sb-foot{padding:12px;border-top:1px solid rgba(255,255,255,.1);}
+.btn-out{
+  width:100%;padding:9px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);
+  border:1px solid rgba(255,255,255,.2);border-radius:var(--r);
+  font-size:12px;cursor:pointer;transition:background .2s;
+}
+.btn-out:hover{background:rgba(255,255,255,.2);}
+
+/* MAIN */
+.main{margin-left:220px;flex:1;display:flex;flex-direction:column;min-height:100vh;}
+.phead{
+  background:white;padding:14px 24px;border-bottom:1px solid var(--gray-200);
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:50;box-shadow:var(--sh);
+}
+.ptitle{font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.pdate{font-size:11px;color:var(--gray-400);}
+.content{padding:22px;}
+
+/* VIEWS */
+.view{display:none;}
+.view.active{display:block;}
+
+/* CARD */
+.card{background:white;border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh);margin-bottom:16px;}
+.ctitle{
+  font-size:14px;font-weight:700;color:var(--navy);
+  margin-bottom:16px;padding-bottom:10px;
+  border-bottom:2px solid var(--blue-pale);
+  display:flex;align-items:center;gap:7px;
+}
+
+/* BADGE */
+.badge{
+  display:inline-flex;align-items:center;padding:2px 9px;
+  border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;
+}
+.bg{background:var(--green-pale);color:#065F46;}
+.bo{background:var(--orange-pale);color:#92400E;}
+.br{background:var(--red-pale);color:#991B1B;}
+.bb{background:var(--blue-pale);color:#1E40AF;}
+.bn{background:var(--gray-100);color:var(--gray-600);}
+
+/* QUICK BUTTONS (home) */
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.qbtn{
+  background:white;border:2px solid var(--gray-200);border-radius:var(--r-lg);
+  padding:20px 12px;text-align:center;cursor:pointer;transition:all .2s;
+}
+.qbtn:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:var(--sh);}
+.qi{font-size:26px;display:block;margin-bottom:7px;}
+.ql{font-size:12px;font-weight:700;color:var(--gray-800);}
+
+/* CHECKLIST */
+.ctabs{display:flex;gap:8px;margin-bottom:16px;}
+.ctab{
+  padding:7px 18px;border-radius:20px;border:2px solid var(--gray-200);
+  background:white;cursor:pointer;font-size:13px;font-weight:700;
+  color:var(--gray-600);transition:all .2s;
+}
+.ctab.active{background:var(--navy);color:white;border-color:var(--navy);}
+.prog-wrap{background:var(--gray-100);border-radius:20px;height:7px;margin-bottom:6px;overflow:hidden;}
+.prog-bar{height:100%;background:linear-gradient(90deg,var(--navy),var(--blue-acc));border-radius:20px;transition:width .35s;}
+.prog-txt{font-size:11px;color:var(--gray-400);margin-bottom:16px;}
+.ci{
+  display:flex;align-items:flex-start;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--gray-100);cursor:pointer;
+  transition:background .15s;
+}
+.ci:last-child{border-bottom:none;}
+.ci:hover{background:var(--gray-50);margin:0 -4px;padding-left:4px;border-radius:6px;}
+.cbox{
+  width:22px;height:22px;border:2px solid var(--gray-200);border-radius:6px;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:all .15s;font-size:13px;font-weight:700;margin-top:1px;
+}
+.ci.done .cbox{background:var(--green);border-color:var(--green);color:white;}
+.ci.done .ctxt{text-decoration:line-through;color:var(--gray-400);}
+.ctxt{font-size:14px;line-height:1.5;}
+.cnote{font-size:11px;color:var(--gray-400);margin-top:2px;}
+.btn-reset{
+  padding:8px 18px;background:var(--gray-100);color:var(--gray-600);
+  border:1px solid var(--gray-200);border-radius:var(--r);font-size:12px;
+  cursor:pointer;margin-top:14px;transition:background .2s;
+}
+.btn-reset:hover{background:var(--gray-200);}
+
+/* VENDOR */
+.vpost{
+  border:1px solid var(--gray-200);border-radius:var(--r);padding:15px;
+  margin-bottom:10px;transition:border-color .2s;
+}
+.vpost:hover{border-color:var(--blue-acc);}
+.vhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
+.vname{font-size:13px;font-weight:700;color:var(--navy);}
+.vdate{font-size:11px;color:var(--gray-400);}
+.vcont{font-size:13px;color:var(--gray-800);line-height:1.6;margin-bottom:6px;}
+.vfoot{display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
+.vform{
+  background:var(--blue-pale);border:1px solid var(--blue-mid);
+  border-radius:var(--r);padding:16px;margin-bottom:18px;
+}
+.vform-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+/* MANUAL */
+.mcat{margin-bottom:18px;}
+.mcat-title{
+  font-size:11px;font-weight:700;color:var(--gray-600);
+  letter-spacing:.07em;margin-bottom:8px;display:flex;align-items:center;gap:5px;
+}
+.mlink{
+  display:flex;align-items:center;gap:10px;padding:11px 14px;
+  background:var(--gray-50);border:1px solid var(--gray-200);
+  border-radius:var(--r);margin-bottom:7px;text-decoration:none;
+  color:var(--gray-800);font-size:13px;transition:all .15s;cursor:pointer;
+}
+.mlink:hover{background:var(--blue-pale);border-color:var(--blue-acc);color:var(--navy);}
+.mlink-arrow{margin-left:auto;color:var(--gray-400);font-size:12px;}
+
+/* REPORT */
+.btn-pri{
+  padding:11px 24px;background:var(--navy);color:white;
+  border:none;border-radius:var(--r);font-size:14px;font-weight:700;
+  cursor:pointer;transition:background .2s;
+}
+.btn-pri:hover{background:var(--navy-dark);}
+textarea.fctl{resize:vertical;min-height:100px;}
+.ritem{
+  border:1px solid var(--gray-200);border-radius:var(--r);padding:13px 15px;
+  margin-bottom:9px;
+}
+.ritem-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.ritem-body{font-size:13px;line-height:1.6;}
+.ritem-meta{font-size:11px;color:var(--gray-400);margin-top:5px;}
+
+/* ADMIN */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:4px;}
+.stat{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--r);padding:16px;text-align:center;}
+.stat-n{font-size:28px;font-weight:700;color:var(--navy);}
+.stat-l{font-size:11px;color:var(--gray-400);margin-top:3px;}
+.atbl{width:100%;border-collapse:collapse;font-size:12px;}
+.atbl th{background:var(--navy);color:white;padding:9px 12px;text-align:left;font-weight:600;}
+.atbl td{padding:9px 12px;border-bottom:1px solid var(--gray-100);}
+.atbl tr:hover td{background:var(--blue-pale);}
+
+/* MOBILE MENU */
+.mob-btn{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--navy);padding:4px;}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:90;}
+.overlay.open{display:block;}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:22px;right:22px;background:var(--navy);color:white;
+  padding:11px 18px;border-radius:var(--r);font-size:13px;font-weight:600;
+  box-shadow:var(--sh-lg);z-index:999;
+  transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .sb{transform:translateX(-100%);}
+  .sb.open{transform:translateX(0);}
+  .main{margin-left:0;}
+  .mob-btn{display:block;}
+  .qgrid{grid-template-columns:repeat(2,1fr);}
+  .frow{grid-template-columns:1fr;}
+  .content{padding:14px;}
+  .phead{padding:12px 16px;}
+}
+@media(max-width:480px){
+  .qgrid{grid-template-columns:repeat(2,1fr);gap:10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== LOGIN ===================== -->
+<div id="loginPage">
+  <div class="lcard">
+    <div class="llogo">🏥</div>
+    <div class="ltitle">ひろかわ腎クリニック</div>
+    <div class="lsub">業務ポータル — Clinical Portal</div>
+
+    <div class="fgroup">
+      <label class="flabel">スタッフ名</label>
+      <select class="fctl" id="staffSel">
+        <option value="">— 選択してください —</option>
+      </select>
+    </div>
+    <div class="fgroup">
+      <label class="flabel">PINコード（4桁）</label>
+      <input type="password" class="fctl" id="pinIn"
+             placeholder="••••" maxlength="4" inputmode="numeric">
+    </div>
+    <button class="btn-login" onclick="doLogin()">ログイン</button>
+    <div class="lerr" id="lerr">スタッフ名またはPINコードが違います</div>
+
+    <div style="margin-top:20px;background:#FFF7ED;border:1px solid #FED7AA;
+                border-radius:var(--r);padding:13px 14px;">
+      <div style="font-size:11px;font-weight:700;color:#C2410C;
+                  letter-spacing:.04em;margin-bottom:7px;">⚠️ ご利用にあたって</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+        <li style="font-size:12px;color:#7C2D12;display:flex;gap:7px;line-height:1.5;">
+          <span>🔒</span><span>このURLはスタッフ限定です。<br>外部への共有・SNS掲載は禁止です。</span>
+        </li>
+        <li style="font-size:12px;color:#7C2D12;display:flex;gap:7px;line-height:1.5;">
+          <span>🚫</span><span>患者名・患者ID・病状などの<br>個人情報は絶対に入力しないでください。</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== APP ===================== -->
+<div id="appPage">
+  <div class="overlay" id="overlay" onclick="closeSb()"></div>
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <nav class="sb" id="sb">
+      <div class="sb-head">
+        <div class="sb-clinic">ひろかわ腎クリニック<br>業務ポータル</div>
+        <div class="sb-ver">Clinical Portal v1.0</div>
+      </div>
+      <div class="sb-user">👤 <span id="sbName">—</span></div>
+      <div class="sb-nav">
+        <div class="ni active" onclick="go('home')"><span class="ni-ic">🏠</span>ホーム</div>
+        <div class="ni" onclick="go('check')"><span class="ni-ic">✅</span>チェックリスト</div>
+        <div class="ni" onclick="go('vendor')"><span class="ni-ic">🔧</span>業者情報</div>
+        <div class="ni" onclick="go('manual')"><span class="ni-ic">📁</span>マニュアル</div>
+        <div class="ni" onclick="go('report')"><span class="ni-ic">✉️</span>報告・相談</div>
+        <div class="ni admin-only" onclick="go('admin')" style="display:none;">
+          <span class="ni-ic">🔐</span>管理者
+        </div>
+      </div>
+      <div class="sb-foot">
+        <button class="btn-out" onclick="doLogout()">ログアウト</button>
+      </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div class="main">
+      <div class="phead">
+        <div style="display:flex;align-items:center;gap:11px;">
+          <button class="mob-btn" onclick="openSb()">☰</button>
+          <div class="ptitle" id="ptitle">🏠 ホーム</div>
+        </div>
+        <div class="pdate" id="pdate"></div>
+      </div>
+      <div class="content">
+
+        <!-- HOME -->
+        <div class="view active" id="v-home">
+          <div class="qgrid">
+            <div class="qbtn" onclick="go('check')">
+              <span class="qi">✅</span><span class="ql">チェックリスト</span>
+            </div>
+            <div class="qbtn" onclick="go('vendor')">
+              <span class="qi">🔧</span><span class="ql">業者情報</span>
+            </div>
+            <div class="qbtn" onclick="go('manual')">
+              <span class="qi">📁</span><span class="ql">マニュアル</span>
+            </div>
+            <div class="qbtn" onclick="go('report')">
+              <span class="qi">✉️</span><span class="ql">報告・相談</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="ctitle">📢 最新の業者情報</div>
+            <div id="homeVendor"></div>
+          </div>
+          <div class="card">
+            <div class="ctitle">📋 本日のチェックリスト状況</div>
+            <div id="homeCheck"></div>
+          </div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="view" id="v-check">
+          <div class="card">
+            <div class="ctabs">
+              <button class="ctab active" onclick="switchTab('morning')">🌅 朝の業務</button>
+              <button class="ctab" onclick="switchTab('dialysis')">💉 透析中</button>
+            </div>
+            <div class="prog-wrap"><div class="prog-bar" id="progBar" style="width:0%"></div></div>
+            <div class="prog-txt" id="progTxt">0 / 0 完了</div>
+            <div id="clItems"></div>
+            <button class="btn-reset" onclick="resetCL()">🔄 リセット</button>
+          </div>
+        </div>
+
+        <!-- VENDOR -->
+        <div class="view" id="v-vendor">
+          <!-- 管理者投稿フォーム -->
+          <div class="vform admin-only" id="vForm" style="display:none;">
+            <div class="vform-title">＋ 業者情報を追加（管理者）</div>
+            <div class="fgroup">
+              <label class="flabel">業者名</label>
+              <input type="text" class="fctl" id="vName" placeholder="例：〇〇医療機器">
+            </div>
+            <div class="fgroup">
+              <label class="flabel">内容</label>
+              <textarea class="fctl" id="vCont" rows="3" placeholder="業者対応の内容を入力"></textarea>
+            </div>
+            <div class="frow">
+              <div class="fgroup">
+                <label class="flabel">スタッフへの影響</label>
+                <input type="text" class="fctl" id="vImpact" placeholder="例：通常運用可">
+              </div>
+              <div class="fgroup">
+                <label class="flabel">対応期限</label>
+                <input type="date" class="fctl" id="vDeadline">
+              </div>
+            </div>
+            <button class="btn-pri" onclick="addVendor()">投稿する</button>
+          </div>
+          <div class="card">
+            <div class="ctitle">🔧 業者情報掲示板</div>
+            <div id="vList"></div>
+          </div>
+        </div>
+
+        <!-- MANUAL -->
+        <div class="view" id="v-manual">
+          <div class="card">
+            <div class="ctitle">📁 マニュアル・手順書</div>
+            <div class="mcat">
+              <div class="mcat-title">🔴 緊急・イレギュラー対応</div>
+              <div class="mlink" onclick="openDoc('停電作業手順')">
+                📄 停電作業手順書<span class="badge br" style="margin-left:8px;">年1回</span>
+                <span class="mlink-arrow">▶</span>
+              </div>
+              <div class="mlink" onclick="openDoc('透析装置トラブル対応')">
+                📄 透析装置トラブル対応マニュアル<span class="mlink-arrow">▶</span>
+              </div>
+              <div class="mlink" onclick="openDoc('レントゲントラブル')">
+                📄 レントゲントラブル対応<span class="mlink-arrow">▶</span>
+              </div>
+            </div>
+            <div class="mcat">
+              <div class="mcat-title">📅 定期業務</div>
+              <div class="mlink" onclick="openDoc('月次定期点検')">
+                📄 月次定期点検手順<span class="mlink-arrow">▶</span>
+              </div>
+              <div class="mlink" onclick="openDoc('機械室日常点検')">
+                📄 機械室日常点検チェック<span class="mlink-arrow">▶</span>
+              </div>
+            </div>
+            <div class="mcat">
+              <div class="mcat-title">👤 患者・臨床対応</div>
+              <div class="mlink" onclick="openDoc('VAエコー評価')">
+                📄 VAエコー評価手順
+                <span class="badge bo" style="margin-left:8px;">専門</span>
+                <span class="mlink-arrow">▶</span>
+              </div>
+              <div class="mlink" onclick="openDoc('穿刺チェックリスト')">
+                📄 穿刺チェックリスト記入方法<span class="mlink-arrow">▶</span>
+              </div>
+            </div>
+            <div class="mcat">
+              <div class="mcat-title">📋 管理・物品</div>
+              <div class="mlink" onclick="openDoc('物品注文・在庫管理')">
+                📄 物品注文・在庫管理手順<span class="mlink-arrow">▶</span>
+              </div>
+              <div class="mlink" onclick="openDoc('業者対応フロー')">
+                📄 業者対応フロー<span class="mlink-arrow">▶</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REPORT -->
+        <div class="view" id="v-report">
+          <div class="card">
+            <div class="ctitle">✉️ 報告・相談フォーム</div>
+            <div class="frow" style="margin-bottom:14px;">
+              <div class="fgroup">
+                <label class="flabel">種別</label>
+                <select class="fctl" id="rType">
+                  <option value="報告">📋 報告</option>
+                  <option value="連絡">📢 連絡</option>
+                  <option value="相談">🙋 相談</option>
+                  <option value="ヒヤリハット">⚠️ ヒヤリハット</option>
+                  <option value="機器不具合">🔧 機器不具合</option>
+                </select>
+              </div>
+              <div class="fgroup">
+                <label class="flabel">緊急度</label>
+                <select class="fctl" id="rUrg">
+                  <option value="低">🟢 低（通常業務内）</option>
+                  <option value="中">🟡 中（本日中に確認）</option>
+                  <option value="高">🔴 高（即時確認が必要）</option>
+                </select>
+              </div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel">内容</label>
+              <textarea class="fctl" id="rCont" rows="5"
+                placeholder="内容を入力してください。&#10;例：〇番透析装置から異音がしています。発生は〇時頃。現在は通常稼働中です。"></textarea>
+            </div>
+            <div class="fgroup">
+              <label class="flabel">対応状況</label>
+              <select class="fctl" id="rStat">
+                <option value="対応済み">✅ 対応済み</option>
+                <option value="対応中">🔄 対応中</option>
+                <option value="対応待ち">⏳ 対応待ち</option>
+              </select>
+            </div>
+            <button class="btn-pri" onclick="sendReport()">送信する</button>
+          </div>
+          <div class="card">
+            <div class="ctitle">📜 送信履歴</div>
+            <div id="rList"></div>
+          </div>
+        </div>
+
+        <!-- ADMIN -->
+        <div class="view" id="v-admin">
+          <div class="card" style="border:1.5px solid #FED7AA;background:#FFFBF5;">
+            <div class="ctitle" style="color:#C2410C;border-color:#FED7AA;">🔐 セキュリティ管理チェック</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:11px 13px;
+                          background:#FFF7ED;border:1px solid #FED7AA;border-radius:var(--r);">
+                <span style="font-size:18px;margin-top:1px;">🔄</span>
+                <div>
+                  <div style="font-size:13px;font-weight:700;color:#92400E;">PINコードの定期変更</div>
+                  <div style="font-size:12px;color:#B45309;margin-top:3px;line-height:1.5;">
+                    月1回を目安にスタッフのPINを変更してください。<br>
+                    変更はindex.htmlのSTAFF一覧を編集→GitHubにアップロード。
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:11px 13px;
+                          background:#FEF2F2;border:1px solid #FECACA;border-radius:var(--r);">
+                <span style="font-size:18px;margin-top:1px;">🚪</span>
+                <div>
+                  <div style="font-size:13px;font-weight:700;color:#991B1B;">退職者のPIN削除</div>
+                  <div style="font-size:12px;color:#B91C1C;margin-top:3px;line-height:1.5;">
+                    退職・異動が発生したら<strong>即日</strong>PINを削除してください。<br>
+                    対象スタッフのpin欄を削除またはpinを無効な値に変更。
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="ctitle">📊 アクセス統計</div>
+            <div class="stat-grid" id="aStats"></div>
+          </div>
+          <div class="card">
+            <div class="ctitle">📋 閲覧ログ（直近30件）</div>
+            <div style="overflow-x:auto;">
+              <table class="atbl">
+                <thead><tr><th>日時</th><th>スタッフ名</th><th>操作</th></tr></thead>
+                <tbody id="aLog"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="ctitle">📨 報告・相談一覧</div>
+            <div id="aReports"></div>
+          </div>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /app -->
+</div><!-- /appPage -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── GAS連携（GitHub Pages本番用）──────────────────
+// GASデプロイ後にURLを入れてください
+const GAS_URL = '';
+const USE_GAS  = GAS_URL !== '';
+
+// ── スタッフ設定（22名 + 管理者）─────────────────
+// ※ name と pin を実際のものに変更してください
+// ※ 管理者PINは必ず変更してください
+const STAFF = [
+  { id:1,  name:'管理者（CE）',   pin:'0000', role:'admin' },
+  { id:24, name:'管理者２',       pin:'0001', role:'admin' },
+  { id:2,  name:'スタッフ 02', pin:'1234', role:'staff' },
+  { id:3,  name:'スタッフ 03', pin:'1234', role:'staff' },
+  { id:4,  name:'スタッフ 04', pin:'1234', role:'staff' },
+  { id:5,  name:'スタッフ 05', pin:'1234', role:'staff' },
+  { id:6,  name:'スタッフ 06', pin:'1234', role:'staff' },
+  { id:7,  name:'スタッフ 07', pin:'1234', role:'staff' },
+  { id:8,  name:'スタッフ 08', pin:'1234', role:'staff' },
+  { id:9,  name:'スタッフ 09', pin:'1234', role:'staff' },
+  { id:10, name:'スタッフ 10', pin:'1234', role:'staff' },
+  { id:11, name:'スタッフ 11', pin:'1234', role:'staff' },
+  { id:12, name:'スタッフ 12', pin:'1234', role:'staff' },
+  { id:13, name:'スタッフ 13', pin:'1234', role:'staff' },
+  { id:14, name:'スタッフ 14', pin:'1234', role:'staff' },
+  { id:15, name:'スタッフ 15', pin:'1234', role:'staff' },
+  { id:16, name:'スタッフ 16', pin:'1234', role:'staff' },
+  { id:17, name:'スタッフ 17', pin:'1234', role:'staff' },
+  { id:18, name:'スタッフ 18', pin:'1234', role:'staff' },
+  { id:19, name:'スタッフ 19', pin:'1234', role:'staff' },
+  { id:20, name:'スタッフ 20', pin:'1234', role:'staff' },
+  { id:21, name:'スタッフ 21', pin:'1234', role:'staff' },
+  { id:22, name:'スタッフ 22', pin:'1234', role:'staff' },
+  { id:23, name:'スタッフ 23', pin:'1234', role:'staff' },
+];
+
+// ── チェックリスト ─────────────────────────────
+const CL = {
+  morning:[
+    { id:'m1', text:'ゴミ掃除',         note:'植物周りに多いため重点的に確認' },
+    { id:'m2', text:'テレビをつける',     note:'患者さんが過ごしやすい環境に' },
+    { id:'m3', text:'エタノール暖炉をつける', note:'冬季のみ・安全確認後に点火' },
+    { id:'m4', text:'エアコン調整',      note:'患者さんが寒くないか確認（18〜22℃目安）' },
+  ],
+  dialysis:[
+    { id:'d1', text:'穿刺チェックリスト記入',    note:'記入漏れのないよう確認' },
+    { id:'d2', text:'機械室点検',               note:'異常がある場合は即報告' },
+    { id:'d3', text:'透析終了時のスタッフ配置確認', note:'休憩終了・全員揃っているか確認' },
+    { id:'d4', text:'装置・回路の異音確認',       note:'異音がある場合は装置番号を記録して報告' },
+  ]
+};
+
+// ── マニュアルURLマップ ───────────────────────
+// 実際のファイルURLを設定してください
+// 例：'./manuals/停電作業手順.pdf' または Google Drive共有URL
+const DOCS = {
+  '停電作業手順'          : '',
+  '透析装置トラブル対応'  : '',
+  'レントゲントラブル'    : '',
+  '月次定期点検'          : '',
+  '機械室日常点検'        : '',
+  'VAエコー評価'          : '',
+  '穿刺チェックリスト'    : '',
+  '物品注文・在庫管理'    : '',
+  '業者対応フロー'        : '',
+};
+
+// ── アプリ状態 ────────────────────────────────
+const S = {
+  user:    null,
+  tab:     'morning',
+  checks:  { morning:{}, dialysis:{} },
+  vendors: [
+    {
+      id:1, date:'2025-06-10',
+      vendor:'〇〇医療機器株式会社',
+      cont:'ポンプユニットのベアリング消耗が通常より早い傾向。現時点では安全に使用可能。定期交換の前倒しを推奨。',
+      impact:'半年以内に交換を予定。通常業務への影響なし。',
+      deadline:'2025-12-31', confirmed:[]
+    },
+    {
+      id:2, date:'2025-06-05',
+      vendor:'△△サービス',
+      cont:'RO装置の年次点検を実施。フィルター交換完了。次回は来年同時期。',
+      impact:'対応完了。追加対応不要。', deadline:'', confirmed:[]
+    }
+  ],
+  reports: [],
+  logs:    [],
+  nextVid: 3,
+};
+
+// ── 初期化 ────────────────────────────────────
+function init(){
+  const sel = document.getElementById('staffSel');
+  STAFF.forEach(s=>{
+    const o = document.createElement('option');
+    o.value = s.id; o.textContent = s.name;
+    sel.appendChild(o);
+  });
+  tickDate();
+  setInterval(tickDate, 30000);
+  document.getElementById('pinIn').addEventListener('keydown',e=>{
+    if(e.key==='Enter') doLogin();
+  });
+}
+
+function tickDate(){
+  const d = new Date();
+  const days=['日','月','火','水','木','金','土'];
+  const el = document.getElementById('pdate');
+  if(el) el.textContent =
+    `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${days[d.getDay()]}）`;
+}
+
+// ── ログイン / ログアウト ─────────────────────
+function doLogin(){
+  const id  = parseInt(document.getElementById('staffSel').value);
+  const pin = document.getElementById('pinIn').value;
+  const err = document.getElementById('lerr');
+  if(!id){ err.textContent='スタッフ名を選択してください'; err.style.display='block'; return; }
+  const u = STAFF.find(s=>s.id===id);
+  if(!u||u.pin!==pin){ err.style.display='block'; document.getElementById('pinIn').value=''; return; }
+  err.style.display='none';
+  S.user = u;
+  pushLog('ログイン');
+  if(USE_GAS) gasPost({type:'login',name:u.name,time:now()});
+
+  document.getElementById('loginPage').style.display='none';
+  document.getElementById('appPage').style.display='block';
+  document.getElementById('sbName').textContent = u.name;
+
+  if(u.role==='admin'){
+    document.querySelectorAll('.admin-only').forEach(el=>el.style.display='flex');
+    document.getElementById('vForm').style.display='block';
+  }
+  go('home');
+}
+
+function doLogout(){
+  S.user=null;
+  document.getElementById('appPage').style.display='none';
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('staffSel').value='';
+  document.getElementById('pinIn').value='';
+  document.querySelectorAll('.admin-only').forEach(el=>el.style.display='none');
+  document.getElementById('vForm').style.display='none';
+}
+
+// ── ナビ ─────────────────────────────────────
+const TITLES = {
+  home:'🏠 ホーム', check:'✅ チェックリスト',
+  vendor:'🔧 業者情報', manual:'📁 マニュアル',
+  report:'✉️ 報告・相談', admin:'🔐 管理者ページ'
+};
+function go(v){
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
+  document.getElementById('v-'+v).classList.add('active');
+  document.querySelectorAll('.ni').forEach(el=>{
+    el.classList.toggle('active', el.getAttribute('onclick')?.includes(`'${v}'`));
+  });
+  document.getElementById('ptitle').textContent = TITLES[v];
+  if(v==='home')   renderHome();
+  if(v==='check')  renderCL();
+  if(v==='vendor') renderVendor();
+  if(v==='report') renderReports();
+  if(v==='admin')  renderAdmin();
+  pushLog(TITLES[v]+'を閲覧');
+  closeSb(); tickDate();
+}
+
+// ── ホーム ───────────────────────────────────
+function renderHome(){
+  // 業者情報プレビュー
+  const el = document.getElementById('homeVendor');
+  if(!S.vendors.length){
+    el.innerHTML='<p style="color:var(--gray-400);font-size:13px;">業者情報はまだありません</p>';
+  } else {
+    const v = S.vendors[0];
+    el.innerHTML=`
+      <div style="border-left:3px solid var(--navy);padding-left:12px;">
+        <div style="font-size:11px;color:var(--gray-400);">${v.date} ／ ${v.vendor}</div>
+        <div style="font-size:13px;margin-top:4px;line-height:1.6;">${v.cont}</div>
+        ${v.deadline?`<div style="margin-top:6px;"><span class="badge bo">期限：${v.deadline}</span></div>`:''}
+      </div>
+      <div style="margin-top:9px;font-size:12px;">
+        <a style="color:var(--navy);cursor:pointer;font-weight:600;" onclick="go('vendor')">→ 全件を見る</a>
+      </div>`;
+  }
+  // チェック状況
+  const cel = document.getElementById('homeCheck');
+  const m = CL.morning, d = CL.dialysis;
+  const md = m.filter(i=>S.checks.morning[i.id]).length;
+  const dd = d.filter(i=>S.checks.dialysis[i.id]).length;
+  cel.innerHTML=`
+    <div style="display:flex;gap:20px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:11px;color:var(--gray-400);margin-bottom:4px;">🌅 朝の業務</div>
+        <span class="badge ${md===m.length?'bg':'bo'}">${md} / ${m.length} 完了</span>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--gray-400);margin-bottom:4px;">💉 透析中</div>
+        <span class="badge ${dd===d.length?'bg':'bo'}">${dd} / ${d.length} 完了</span>
+      </div>
+    </div>
+    <div style="margin-top:9px;font-size:12px;">
+      <a style="color:var(--navy);cursor:pointer;font-weight:600;" onclick="go('check')">→ チェックリストを開く</a>
+    </div>`;
+}
+
+// ── チェックリスト ───────────────────────────
+function switchTab(t){
+  S.tab = t;
+  document.querySelectorAll('.ctab').forEach((el,i)=>{
+    el.classList.toggle('active',(i===0&&t==='morning')||(i===1&&t==='dialysis'));
+  });
+  renderCL();
+}
+function renderCL(){
+  const items = CL[S.tab];
+  const st    = S.checks[S.tab];
+  const done  = items.filter(i=>st[i.id]).length;
+  document.getElementById('progBar').style.width = `${done/items.length*100}%`;
+  document.getElementById('progTxt').textContent = `${done} / ${items.length} 完了`;
+  document.getElementById('clItems').innerHTML = items.map(i=>`
+    <div class="ci ${st[i.id]?'done':''}" onclick="toggleCI('${i.id}')">
+      <div class="cbox">${st[i.id]?'✓':''}</div>
+      <div>
+        <div class="ctxt">${i.text}</div>
+        ${i.note?`<div class="cnote">${i.note}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+function toggleCI(id){
+  const t = S.tab;
+  S.checks[t][id] = !S.checks[t][id];
+  const item = CL[t].find(i=>i.id===id);
+  pushLog(`「${item?.text}」を${S.checks[t][id]?'完了':'未完了に戻した'}`);
+  renderCL();
+}
+function resetCL(){
+  if(!confirm('チェックリストをリセットしますか？')) return;
+  S.checks[S.tab]={};
+  renderCL(); toast('リセットしました');
+}
+
+// ── 業者情報 ─────────────────────────────────
+function renderVendor(){
+  const el = document.getElementById('vList');
+  if(!S.vendors.length){
+    el.innerHTML='<p style="color:var(--gray-400);font-size:13px;">業者情報はまだありません</p>';
+    return;
+  }
+  el.innerHTML = S.vendors.map(v=>{
+    const mine = v.confirmed.includes(S.user?.id);
+    return `
+    <div class="vpost">
+      <div class="vhead">
+        <div class="vname">🏢 ${v.vendor}</div>
+        <div class="vdate">${v.date}</div>
+      </div>
+      <div class="vcont">${v.cont}</div>
+      <div style="font-size:12px;color:var(--gray-600);margin-bottom:8px;">
+        👥 スタッフへの影響：${v.impact}
+      </div>
+      <div class="vfoot">
+        ${v.deadline?`<span class="badge bo">期限：${v.deadline}</span>`:'<span class="badge bn">期限なし</span>'}
+        <span class="badge ${mine?'bg':'bb'}" style="cursor:pointer;" onclick="confirmV(${v.id})">
+          ${mine?'✓ 確認済み':'確認する'}
+        </span>
+        <span class="badge bn">${v.confirmed.length}名確認済み</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+function confirmV(id){
+  const v = S.vendors.find(p=>p.id===id);
+  if(!v) return;
+  if(!v.confirmed.includes(S.user?.id)){
+    v.confirmed.push(S.user.id);
+    pushLog(`業者情報「${v.vendor}」を確認`);
+    toast('確認しました');
+  }
+  renderVendor();
+}
+function addVendor(){
+  const name = document.getElementById('vName').value.trim();
+  const cont = document.getElementById('vCont').value.trim();
+  const imp  = document.getElementById('vImpact').value.trim();
+  const dl   = document.getElementById('vDeadline').value;
+  if(!name||!cont){ alert('業者名と内容を入力してください'); return; }
+  S.vendors.unshift({
+    id:S.nextVid++,
+    date:new Date().toLocaleDateString('ja-JP').replace(/\//g,'-'),
+    vendor:name, cont, impact:imp||'影響なし', deadline:dl, confirmed:[S.user.id]
+  });
+  ['vName','vCont','vImpact','vDeadline'].forEach(id=>document.getElementById(id).value='');
+  pushLog(`業者情報「${name}」を投稿`);
+  toast('投稿しました');
+  renderVendor();
+}
+
+// ── マニュアル ───────────────────────────────
+function openDoc(name){
+  pushLog(`マニュアル「${name}」を開いた`);
+  const url = DOCS[name];
+  if(url){ window.open(url,'_blank'); }
+  else {
+    alert(`「${name}」\n\nマニュアルのURLを設定後に開けるようになります。\n管理者にお問い合わせください。`);
+  }
+}
+
+// ── 報告・相談 ───────────────────────────────
+function sendReport(){
+  const cont = document.getElementById('rCont').value.trim();
+  if(!cont){ alert('内容を入力してください'); return; }
+  const r = {
+    id:Date.now(),
+    time:now(),
+    staff:S.user?.name,
+    type:document.getElementById('rType').value,
+    urg:document.getElementById('rUrg').value,
+    cont,
+    stat:document.getElementById('rStat').value,
+  };
+  S.reports.unshift(r);
+  if(USE_GAS) gasPost({type:'report',...r});
+  document.getElementById('rCont').value='';
+  pushLog(`【${r.type}】を送信（緊急度：${r.urg}）`);
+  toast('送信しました');
+  renderReports();
+}
+function renderReports(){
+  const el = document.getElementById('rList');
+  if(!S.reports.length){
+    el.innerHTML='<p style="color:var(--gray-400);font-size:13px;">まだ送信はありません</p>';
+    return;
+  }
+  const uc = {低:'bg',中:'bo',高:'br'};
+  el.innerHTML = S.reports.map(r=>`
+    <div class="ritem">
+      <div class="ritem-head">
+        <div>
+          <span class="badge bb">${r.type}</span>
+          <span class="badge ${uc[r.urg]}" style="margin-left:5px;">緊急度：${r.urg}</span>
+        </div>
+        <span class="badge bn">${r.stat}</span>
+      </div>
+      <div class="ritem-body">${r.cont}</div>
+      <div class="ritem-meta">${r.staff} ／ ${r.time}</div>
+    </div>`).join('');
+}
+
+// ── 管理者ページ ─────────────────────────────
+function renderAdmin(){
+  const todayStr = new Date().toLocaleDateString('ja-JP');
+  const todayLogs = S.logs.filter(l=>l.time.startsWith(todayStr));
+  const unique = [...new Set(todayLogs.map(l=>l.name))].length;
+
+  document.getElementById('aStats').innerHTML=`
+    <div class="stat"><div class="stat-n">${S.logs.length}</div><div class="stat-l">総アクセス数</div></div>
+    <div class="stat"><div class="stat-n">${unique}</div><div class="stat-l">本日のアクセス者数</div></div>
+    <div class="stat"><div class="stat-n">${S.reports.length}</div><div class="stat-l">報告・相談件数</div></div>
+    <div class="stat"><div class="stat-n">${S.vendors.length}</div><div class="stat-l">業者情報件数</div></div>`;
+
+  const tb = document.getElementById('aLog');
+  tb.innerHTML = S.logs.length
+    ? S.logs.slice(0,30).map(l=>`
+        <tr><td>${l.time}</td><td>${l.name}</td><td>${l.action}</td></tr>`).join('')
+    : '<tr><td colspan="3" style="color:var(--gray-400);">ログはまだありません</td></tr>';
+
+  const uc={低:'bg',中:'bo',高:'br'};
+  const ar = document.getElementById('aReports');
+  ar.innerHTML = S.reports.length
+    ? S.reports.map(r=>`
+        <div class="ritem">
+          <div class="ritem-head">
+            <div>
+              <span class="badge bb">${r.type}</span>
+              <span class="badge ${uc[r.urg]}" style="margin-left:5px;">${r.urg}</span>
+            </div>
+            <span class="badge bn">${r.stat}</span>
+          </div>
+          <div class="ritem-body">${r.cont}</div>
+          <div class="ritem-meta">${r.staff} ／ ${r.time}</div>
+        </div>`).join('')
+    : '<p style="color:var(--gray-400);font-size:13px;">報告・相談はありません</p>';
+}
+
+// ── モバイルサイドバー ───────────────────────
+function openSb(){ document.getElementById('sb').classList.add('open'); document.getElementById('overlay').classList.add('open'); }
+function closeSb(){ document.getElementById('sb').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
+
+// ── ユーティリティ ───────────────────────────
+function now(){ return new Date().toLocaleString('ja-JP'); }
+function pushLog(action){ S.logs.unshift({time:now(), name:S.user?.name||'—', action}); }
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent='✅ '+msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+function gasPost(data){
+  fetch(GAS_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json'}}).catch(()=>{});
+}
+
+init();
+</script>
+</body>
+</html>
