@@ -5,328 +5,237 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ひろかわ腎クリニック 業務ポータル</title>
 <style>
-:root {
-  --navy:       #1B3A6B;
-  --navy-mid:   #2952A3;
-  --navy-dark:  #122858;
-  --blue-pale:  #EFF6FF;
-  --blue-mid:   #BFDBFE;
-  --blue-acc:   #3B82F6;
-  --white:      #FFFFFF;
-  --gray-50:    #F8FAFC;
-  --gray-100:   #F1F5F9;
-  --gray-200:   #E2E8F0;
-  --gray-400:   #94A3B8;
-  --gray-600:   #475569;
-  --gray-800:   #1E293B;
-  --green:      #059669;
-  --green-pale: #D1FAE5;
-  --orange:     #D97706;
-  --orange-pale:#FEF3C7;
-  --red:        #DC2626;
-  --red-pale:   #FEE2E2;
-  --r: 10px;
-  --r-lg: 14px;
-  --sh: 0 2px 8px rgba(27,58,107,.10);
-  --sh-lg: 0 8px 30px rgba(27,58,107,.15);
+:root{
+  --navy:#1B3A6B;--navy-mid:#2952A3;--navy-dark:#122858;
+  --blue-pale:#EFF6FF;--blue-mid:#BFDBFE;--blue-acc:#3B82F6;
+  --white:#FFFFFF;--gray-50:#F8FAFC;--gray-100:#F1F5F9;
+  --gray-200:#E2E8F0;--gray-400:#94A3B8;--gray-600:#475569;--gray-800:#1E293B;
+  --green:#059669;--green-pale:#D1FAE5;
+  --orange:#D97706;--orange-pale:#FEF3C7;
+  --red:#DC2626;--red-pale:#FEE2E2;
+  --r:10px;--r-lg:14px;
+  --sh:0 2px 8px rgba(27,58,107,.10);--sh-lg:0 8px 30px rgba(27,58,107,.15);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
-  background:var(--gray-100);color:var(--gray-800);font-size:14px;min-height:100vh;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+  background:var(--gray-100);color:var(--gray-800);font-size:14px;min-height:100vh;}
 
-/* ── LOGIN ─────────────────────────────── */
-#loginPage{
-  min-height:100vh;
-  background:linear-gradient(150deg,var(--navy-dark) 0%,var(--navy-mid) 100%);
-  display:flex;align-items:center;justify-content:center;padding:20px;
-}
-.lcard{
-  background:white;border-radius:var(--r-lg);padding:40px 36px;
-  width:100%;max-width:380px;box-shadow:var(--sh-lg);
-}
-.llogo{
-  width:60px;height:60px;background:var(--navy);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:26px;margin:0 auto 18px;
-}
-.ltitle{font-size:19px;font-weight:700;color:var(--navy);text-align:center;margin-bottom:2px;}
-.lsub{font-size:12px;color:var(--gray-400);text-align:center;margin-bottom:28px;}
-.flabel{display:block;font-size:11px;font-weight:700;color:var(--gray-600);
-  letter-spacing:.05em;margin-bottom:5px;text-transform:uppercase;}
-.fctl{
-  width:100%;padding:10px 13px;border:1.5px solid var(--gray-200);
-  border-radius:var(--r);font-size:14px;color:var(--gray-800);
-  background:white;appearance:none;transition:border-color .2s,box-shadow .2s;
-}
+/* LOGIN */
+#loginPage{min-height:100vh;background:linear-gradient(150deg,var(--navy-dark),var(--navy-mid));
+  display:flex;align-items:center;justify-content:center;padding:20px;}
+.lcard{background:white;border-radius:var(--r-lg);padding:36px;width:100%;max-width:380px;box-shadow:var(--sh-lg);}
+.llogo{width:58px;height:58px;background:var(--navy);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px;}
+.ltitle{font-size:18px;font-weight:700;color:var(--navy);text-align:center;margin-bottom:2px;}
+.lsub{font-size:12px;color:var(--gray-400);text-align:center;margin-bottom:24px;}
+.flabel{display:block;font-size:11px;font-weight:700;color:var(--gray-600);letter-spacing:.05em;margin-bottom:5px;}
+.fctl{width:100%;padding:10px 13px;border:1.5px solid var(--gray-200);border-radius:var(--r);
+  font-size:14px;color:var(--gray-800);background:white;appearance:none;transition:border-color .2s,box-shadow .2s;}
 .fctl:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(27,58,107,.1);}
-.fgroup{margin-bottom:14px;}
-.btn-login{
-  width:100%;padding:12px;background:var(--navy);color:white;
-  border:none;border-radius:var(--r);font-size:15px;font-weight:700;
-  cursor:pointer;margin-top:6px;transition:background .2s,transform .1s;letter-spacing:.02em;
-}
+.fgroup{margin-bottom:13px;}
+.btn-login{width:100%;padding:12px;background:var(--navy);color:white;border:none;
+  border-radius:var(--r);font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;transition:background .2s;}
 .btn-login:hover{background:var(--navy-dark);}
-.btn-login:active{transform:scale(.99);}
-.lerr{
-  background:var(--red-pale);color:var(--red);padding:10px 13px;
-  border-radius:var(--r);font-size:13px;margin-top:10px;display:none;
-}
+.lerr{background:var(--red-pale);color:var(--red);padding:10px 13px;border-radius:var(--r);font-size:13px;margin-top:10px;display:none;}
+.lnotice{margin-top:18px;background:#FFF7ED;border:1px solid #FED7AA;border-radius:var(--r);padding:13px 14px;}
+.lnotice-title{font-size:11px;font-weight:700;color:#C2410C;letter-spacing:.04em;margin-bottom:7px;}
+.lnotice li{font-size:12px;color:#7C2D12;display:flex;gap:7px;line-height:1.5;list-style:none;margin-bottom:5px;}
 
-/* ── APP SHELL ─────────────────────────── */
+/* APP SHELL */
 #appPage{display:none;min-height:100vh;}
 .app{display:flex;min-height:100vh;}
-
-/* SIDEBAR */
-.sb{
-  width:220px;background:var(--navy);flex-shrink:0;
-  display:flex;flex-direction:column;
-  position:fixed;top:0;left:0;height:100vh;z-index:100;
-  transition:transform .3s;
-}
-.sb-head{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sb{width:220px;background:var(--navy);flex-shrink:0;display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;height:100vh;z-index:100;transition:transform .3s;}
+.sb-head{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.1);}
 .sb-clinic{font-size:13px;font-weight:700;color:white;line-height:1.45;}
-.sb-ver{font-size:10px;color:rgba(255,255,255,.4);margin-top:3px;}
-.sb-user{
-  margin:10px;padding:10px 12px;
-  background:rgba(255,255,255,.1);border-radius:var(--r);
-  font-size:12px;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:7px;
-}
+.sb-ver{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;}
+.sb-user{margin:10px;padding:10px 12px;background:rgba(255,255,255,.1);border-radius:var(--r);
+  font-size:12px;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:7px;}
 .sb-nav{flex:1;padding:6px 0;overflow-y:auto;}
-.ni{
-  display:flex;align-items:center;gap:10px;padding:11px 16px;
-  color:rgba(255,255,255,.7);cursor:pointer;font-size:13px;font-weight:500;
-  border-left:3px solid transparent;transition:all .15s;
-}
+.ni{display:flex;align-items:center;gap:10px;padding:11px 16px;color:rgba(255,255,255,.7);
+  cursor:pointer;font-size:13px;font-weight:500;border-left:3px solid transparent;transition:all .15s;}
 .ni:hover{background:rgba(255,255,255,.1);color:white;}
 .ni.active{background:rgba(255,255,255,.15);color:white;border-left-color:#60A5FA;}
 .ni-ic{font-size:15px;width:20px;text-align:center;}
 .sb-foot{padding:12px;border-top:1px solid rgba(255,255,255,.1);}
-.btn-out{
-  width:100%;padding:9px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);
-  border:1px solid rgba(255,255,255,.2);border-radius:var(--r);
-  font-size:12px;cursor:pointer;transition:background .2s;
-}
+.btn-out{width:100%;padding:9px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);
+  border:1px solid rgba(255,255,255,.2);border-radius:var(--r);font-size:12px;cursor:pointer;transition:background .2s;}
 .btn-out:hover{background:rgba(255,255,255,.2);}
-
-/* MAIN */
 .main{margin-left:220px;flex:1;display:flex;flex-direction:column;min-height:100vh;}
-.phead{
-  background:white;padding:14px 24px;border-bottom:1px solid var(--gray-200);
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:50;box-shadow:var(--sh);
-}
-.ptitle{font-size:17px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.phead{background:white;padding:14px 24px;border-bottom:1px solid var(--gray-200);
+  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:var(--sh);}
+.ptitle{font-size:17px;font-weight:700;color:var(--navy);}
 .pdate{font-size:11px;color:var(--gray-400);}
 .content{padding:22px;}
+.view{display:none;} .view.active{display:block;}
 
-/* VIEWS */
-.view{display:none;}
-.view.active{display:block;}
-
-/* CARD */
+/* CARDS */
 .card{background:white;border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh);margin-bottom:16px;}
-.ctitle{
-  font-size:14px;font-weight:700;color:var(--navy);
-  margin-bottom:16px;padding-bottom:10px;
-  border-bottom:2px solid var(--blue-pale);
-  display:flex;align-items:center;gap:7px;
-}
+.ctitle{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:16px;
+  padding-bottom:10px;border-bottom:2px solid var(--blue-pale);display:flex;align-items:center;gap:7px;}
 
-/* BADGE */
-.badge{
-  display:inline-flex;align-items:center;padding:2px 9px;
-  border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;
-}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;}
 .bg{background:var(--green-pale);color:#065F46;}
 .bo{background:var(--orange-pale);color:#92400E;}
 .br{background:var(--red-pale);color:#991B1B;}
 .bb{background:var(--blue-pale);color:#1E40AF;}
 .bn{background:var(--gray-100);color:var(--gray-600);}
 
-/* QUICK BUTTONS (home) */
+/* BUTTONS */
+.btn-pri{padding:9px 18px;background:var(--navy);color:white;border:none;border-radius:var(--r);
+  font-size:13px;font-weight:700;cursor:pointer;transition:background .2s;}
+.btn-pri:hover{background:var(--navy-dark);}
+.btn-sec{padding:8px 16px;background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200);
+  border-radius:var(--r);font-size:13px;cursor:pointer;transition:background .2s;}
+.btn-sec:hover{background:var(--gray-200);}
+.btn-danger{padding:6px 12px;background:var(--red-pale);color:var(--red);border:1px solid #FECACA;
+  border-radius:var(--r);font-size:12px;cursor:pointer;transition:background .2s;}
+.btn-danger:hover{background:#FEE2E2;}
+.btn-sm{padding:5px 11px;font-size:12px;}
+
+/* HOME */
 .qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
-.qbtn{
-  background:white;border:2px solid var(--gray-200);border-radius:var(--r-lg);
-  padding:20px 12px;text-align:center;cursor:pointer;transition:all .2s;
-}
+.qbtn{background:white;border:2px solid var(--gray-200);border-radius:var(--r-lg);
+  padding:20px 12px;text-align:center;cursor:pointer;transition:all .2s;}
 .qbtn:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:var(--sh);}
 .qi{font-size:26px;display:block;margin-bottom:7px;}
 .ql{font-size:12px;font-weight:700;color:var(--gray-800);}
 
 /* CHECKLIST */
-.ctabs{display:flex;gap:8px;margin-bottom:16px;}
-.ctab{
-  padding:7px 18px;border-radius:20px;border:2px solid var(--gray-200);
-  background:white;cursor:pointer;font-size:13px;font-weight:700;
-  color:var(--gray-600);transition:all .2s;
-}
-.ctab.active{background:var(--navy);color:white;border-color:var(--navy);}
+.ctabs,.atabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.ctab,.atab{padding:7px 16px;border-radius:20px;border:2px solid var(--gray-200);
+  background:white;cursor:pointer;font-size:12px;font-weight:700;color:var(--gray-600);transition:all .2s;}
+.ctab.active,.atab.active{background:var(--navy);color:white;border-color:var(--navy);}
+.atab-pane{display:none;} .atab-pane.active{display:block;}
 .prog-wrap{background:var(--gray-100);border-radius:20px;height:7px;margin-bottom:6px;overflow:hidden;}
 .prog-bar{height:100%;background:linear-gradient(90deg,var(--navy),var(--blue-acc));border-radius:20px;transition:width .35s;}
 .prog-txt{font-size:11px;color:var(--gray-400);margin-bottom:16px;}
-.ci{
-  display:flex;align-items:flex-start;gap:12px;padding:12px 0;
-  border-bottom:1px solid var(--gray-100);cursor:pointer;
-  transition:background .15s;
-}
+.ci{display:flex;align-items:flex-start;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--gray-100);cursor:pointer;transition:all .15s;}
 .ci:last-child{border-bottom:none;}
 .ci:hover{background:var(--gray-50);margin:0 -4px;padding-left:4px;border-radius:6px;}
-.cbox{
-  width:22px;height:22px;border:2px solid var(--gray-200);border-radius:6px;
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  transition:all .15s;font-size:13px;font-weight:700;margin-top:1px;
-}
-.ci.done .cbox{background:var(--green);border-color:var(--green);color:white;}
+.cbox{width:22px;height:22px;border:2px solid var(--gray-200);border-radius:6px;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;margin-top:1px;}
+.ci.done .cbox{background:var(--green);border-color:var(--green);color:white;font-size:12px;font-weight:700;}
 .ci.done .ctxt{text-decoration:line-through;color:var(--gray-400);}
-.ctxt{font-size:14px;line-height:1.5;}
-.cnote{font-size:11px;color:var(--gray-400);margin-top:2px;}
-.btn-reset{
-  padding:8px 18px;background:var(--gray-100);color:var(--gray-600);
-  border:1px solid var(--gray-200);border-radius:var(--r);font-size:12px;
-  cursor:pointer;margin-top:14px;transition:background .2s;
-}
-.btn-reset:hover{background:var(--gray-200);}
+.ctxt{font-size:14px;line-height:1.5;} .cnote{font-size:11px;color:var(--gray-400);margin-top:2px;}
 
 /* VENDOR */
-.vpost{
-  border:1px solid var(--gray-200);border-radius:var(--r);padding:15px;
-  margin-bottom:10px;transition:border-color .2s;
-}
-.vpost:hover{border-color:var(--blue-acc);}
+.vpost{border:1px solid var(--gray-200);border-radius:var(--r);padding:15px;margin-bottom:10px;}
 .vhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
 .vname{font-size:13px;font-weight:700;color:var(--navy);}
 .vdate{font-size:11px;color:var(--gray-400);}
-.vcont{font-size:13px;color:var(--gray-800);line-height:1.6;margin-bottom:6px;}
+.vcont{font-size:13px;line-height:1.6;margin-bottom:6px;}
 .vfoot{display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
-.vform{
-  background:var(--blue-pale);border:1px solid var(--blue-mid);
-  border-radius:var(--r);padding:16px;margin-bottom:18px;
-}
+.vform{background:var(--blue-pale);border:1px solid var(--blue-mid);border-radius:var(--r);padding:16px;margin-bottom:18px;}
 .vform-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+textarea.fctl{resize:vertical;min-height:80px;}
 
 /* MANUAL */
 .mcat{margin-bottom:18px;}
-.mcat-title{
-  font-size:11px;font-weight:700;color:var(--gray-600);
-  letter-spacing:.07em;margin-bottom:8px;display:flex;align-items:center;gap:5px;
-}
-.mlink{
-  display:flex;align-items:center;gap:10px;padding:11px 14px;
-  background:var(--gray-50);border:1px solid var(--gray-200);
-  border-radius:var(--r);margin-bottom:7px;text-decoration:none;
-  color:var(--gray-800);font-size:13px;transition:all .15s;cursor:pointer;
-}
+.mcat-title{font-size:11px;font-weight:700;color:var(--gray-600);letter-spacing:.07em;margin-bottom:8px;display:flex;align-items:center;gap:5px;}
+.mlink{display:flex;align-items:center;gap:10px;padding:11px 14px;
+  background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--r);
+  margin-bottom:7px;color:var(--gray-800);font-size:13px;transition:all .15s;cursor:pointer;}
 .mlink:hover{background:var(--blue-pale);border-color:var(--blue-acc);color:var(--navy);}
-.mlink-arrow{margin-left:auto;color:var(--gray-400);font-size:12px;}
 
 /* REPORT */
-.btn-pri{
-  padding:11px 24px;background:var(--navy);color:white;
-  border:none;border-radius:var(--r);font-size:14px;font-weight:700;
-  cursor:pointer;transition:background .2s;
-}
-.btn-pri:hover{background:var(--navy-dark);}
-textarea.fctl{resize:vertical;min-height:100px;}
-.ritem{
-  border:1px solid var(--gray-200);border-radius:var(--r);padding:13px 15px;
-  margin-bottom:9px;
-}
+.ritem{border:1px solid var(--gray-200);border-radius:var(--r);padding:13px 15px;margin-bottom:9px;}
 .ritem-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
 .ritem-body{font-size:13px;line-height:1.6;}
 .ritem-meta{font-size:11px;color:var(--gray-400);margin-top:5px;}
 
 /* ADMIN */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:4px;}
-.stat{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--r);padding:16px;text-align:center;}
-.stat-n{font-size:28px;font-weight:700;color:var(--navy);}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:4px;}
+.stat{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--r);padding:14px;text-align:center;}
+.stat-n{font-size:26px;font-weight:700;color:var(--navy);}
 .stat-l{font-size:11px;color:var(--gray-400);margin-top:3px;}
-.atbl{width:100%;border-collapse:collapse;font-size:12px;}
-.atbl th{background:var(--navy);color:white;padding:9px 12px;text-align:left;font-weight:600;}
-.atbl td{padding:9px 12px;border-bottom:1px solid var(--gray-100);}
+.atbl{width:100%;border-collapse:collapse;font-size:13px;}
+.atbl th{background:var(--navy);color:white;padding:9px 12px;text-align:left;font-weight:600;font-size:12px;}
+.atbl td{padding:9px 12px;border-bottom:1px solid var(--gray-100);vertical-align:middle;}
 .atbl tr:hover td{background:var(--blue-pale);}
+.atbl td input,.atbl td select{padding:5px 8px;border:1.5px solid var(--blue-acc);border-radius:6px;font-size:13px;width:100%;}
 
-/* MOBILE MENU */
+/* ADMIN ADD FORM */
+.add-form{background:var(--blue-pale);border:1px solid var(--blue-mid);border-radius:var(--r);
+  padding:14px;margin-bottom:14px;display:none;}
+.add-form.open{display:block;}
+.add-form-row{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;}
+.add-form-row .fgroup{margin-bottom:0;flex:1;min-width:120px;}
+
+/* SYNC BOX */
+.sync-box{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--r);
+  padding:14px;margin-bottom:12px;}
+.sync-box-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.sync-url{font-size:11px;color:var(--gray-600);word-break:break-all;background:white;
+  border:1px solid var(--gray-200);border-radius:6px;padding:8px 10px;margin:8px 0;max-height:60px;overflow:auto;}
+
+/* SECURITY NOTICE (admin) */
+.sec-card{border:1.5px solid #FED7AA;background:#FFFBF5;border-radius:var(--r);padding:16px;margin-bottom:12px;}
+.sec-card-title{font-size:13px;font-weight:700;color:#C2410C;margin-bottom:10px;}
+.sec-item{display:flex;gap:10px;padding:10px 12px;border-radius:var(--r);margin-bottom:8px;}
+.sec-orange{background:#FFF7ED;border:1px solid #FED7AA;}
+.sec-red{background:var(--red-pale);border:1px solid #FECACA;}
+.sec-item-title{font-size:13px;font-weight:700;color:#92400E;margin-bottom:2px;}
+.sec-item-body{font-size:12px;color:#B45309;line-height:1.5;}
+.sec-red .sec-item-title{color:#991B1B;}
+.sec-red .sec-item-body{color:#B91C1C;}
+
+/* MOBILE */
 .mob-btn{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--navy);padding:4px;}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:90;}
 .overlay.open{display:block;}
-
-/* TOAST */
-.toast{
-  position:fixed;bottom:22px;right:22px;background:var(--navy);color:white;
+.toast{position:fixed;bottom:22px;right:22px;background:var(--navy);color:white;
   padding:11px 18px;border-radius:var(--r);font-size:13px;font-weight:600;
-  box-shadow:var(--sh-lg);z-index:999;
-  transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;
-}
+  box-shadow:var(--sh-lg);z-index:999;transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
-
-/* RESPONSIVE */
 @media(max-width:768px){
-  .sb{transform:translateX(-100%);}
-  .sb.open{transform:translateX(0);}
-  .main{margin-left:0;}
-  .mob-btn{display:block;}
+  .sb{transform:translateX(-100%);} .sb.open{transform:translateX(0);}
+  .main{margin-left:0;} .mob-btn{display:block;}
   .qgrid{grid-template-columns:repeat(2,1fr);}
-  .frow{grid-template-columns:1fr;}
-  .content{padding:14px;}
-  .phead{padding:12px 16px;}
-}
-@media(max-width:480px){
-  .qgrid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .frow,.add-form-row{grid-template-columns:1fr;}
+  .content{padding:14px;} .phead{padding:12px 16px;}
 }
 </style>
 </head>
 <body>
 
-<!-- ===================== LOGIN ===================== -->
+<!-- ═══ LOGIN ═══ -->
 <div id="loginPage">
   <div class="lcard">
     <div class="llogo">🏥</div>
     <div class="ltitle">ひろかわ腎クリニック</div>
     <div class="lsub">業務ポータル — Clinical Portal</div>
-
     <div class="fgroup">
       <label class="flabel">スタッフ名</label>
-      <select class="fctl" id="staffSel">
-        <option value="">— 選択してください —</option>
-      </select>
+      <select class="fctl" id="staffSel"><option value="">— 選択してください —</option></select>
     </div>
     <div class="fgroup">
       <label class="flabel">PINコード（4桁）</label>
-      <input type="password" class="fctl" id="pinIn"
-             placeholder="••••" maxlength="4" inputmode="numeric">
+      <input type="password" class="fctl" id="pinIn" placeholder="••••" maxlength="4" inputmode="numeric">
     </div>
     <button class="btn-login" onclick="doLogin()">ログイン</button>
     <div class="lerr" id="lerr">スタッフ名またはPINコードが違います</div>
-
-    <div style="margin-top:20px;background:#FFF7ED;border:1px solid #FED7AA;
-                border-radius:var(--r);padding:13px 14px;">
-      <div style="font-size:11px;font-weight:700;color:#C2410C;
-                  letter-spacing:.04em;margin-bottom:7px;">⚠️ ご利用にあたって</div>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
-        <li style="font-size:12px;color:#7C2D12;display:flex;gap:7px;line-height:1.5;">
-          <span>🔒</span><span>このURLはスタッフ限定です。<br>外部への共有・SNS掲載は禁止です。</span>
-        </li>
-        <li style="font-size:12px;color:#7C2D12;display:flex;gap:7px;line-height:1.5;">
-          <span>🚫</span><span>患者名・患者ID・病状などの<br>個人情報は絶対に入力しないでください。</span>
-        </li>
+    <div class="lnotice">
+      <div class="lnotice-title">⚠️ ご利用にあたって</div>
+      <ul>
+        <li><span>🔒</span><span>このURLはスタッフ限定です。外部への共有・SNS掲載は禁止です。</span></li>
+        <li><span>🚫</span><span>患者名・患者ID・病状などの個人情報は絶対に入力しないでください。</span></li>
       </ul>
     </div>
   </div>
 </div>
 
-<!-- ===================== APP ===================== -->
+<!-- ═══ APP ═══ -->
 <div id="appPage">
   <div class="overlay" id="overlay" onclick="closeSb()"></div>
   <div class="app">
-
-    <!-- SIDEBAR -->
     <nav class="sb" id="sb">
       <div class="sb-head">
         <div class="sb-clinic">ひろかわ腎クリニック<br>業務ポータル</div>
-        <div class="sb-ver">Clinical Portal v1.0</div>
+        <div class="sb-ver">Clinical Portal v2.0</div>
       </div>
       <div class="sb-user">👤 <span id="sbName">—</span></div>
       <div class="sb-nav">
@@ -335,16 +244,11 @@ textarea.fctl{resize:vertical;min-height:100px;}
         <div class="ni" onclick="go('vendor')"><span class="ni-ic">🔧</span>業者情報</div>
         <div class="ni" onclick="go('manual')"><span class="ni-ic">📁</span>マニュアル</div>
         <div class="ni" onclick="go('report')"><span class="ni-ic">✉️</span>報告・相談</div>
-        <div class="ni admin-only" onclick="go('admin')" style="display:none;">
-          <span class="ni-ic">🔐</span>管理者
-        </div>
+        <div class="ni admin-only" onclick="go('admin')" style="display:none;"><span class="ni-ic">🔐</span>管理者</div>
       </div>
-      <div class="sb-foot">
-        <button class="btn-out" onclick="doLogout()">ログアウト</button>
-      </div>
+      <div class="sb-foot"><button class="btn-out" onclick="doLogout()">ログアウト</button></div>
     </nav>
 
-    <!-- MAIN -->
     <div class="main">
       <div class="phead">
         <div style="display:flex;align-items:center;gap:11px;">
@@ -358,130 +262,63 @@ textarea.fctl{resize:vertical;min-height:100px;}
         <!-- HOME -->
         <div class="view active" id="v-home">
           <div class="qgrid">
-            <div class="qbtn" onclick="go('check')">
-              <span class="qi">✅</span><span class="ql">チェックリスト</span>
-            </div>
-            <div class="qbtn" onclick="go('vendor')">
-              <span class="qi">🔧</span><span class="ql">業者情報</span>
-            </div>
-            <div class="qbtn" onclick="go('manual')">
-              <span class="qi">📁</span><span class="ql">マニュアル</span>
-            </div>
-            <div class="qbtn" onclick="go('report')">
-              <span class="qi">✉️</span><span class="ql">報告・相談</span>
-            </div>
+            <div class="qbtn" onclick="go('check')"><span class="qi">✅</span><span class="ql">チェックリスト</span></div>
+            <div class="qbtn" onclick="go('vendor')"><span class="qi">🔧</span><span class="ql">業者情報</span></div>
+            <div class="qbtn" onclick="go('manual')"><span class="qi">📁</span><span class="ql">マニュアル</span></div>
+            <div class="qbtn" onclick="go('report')"><span class="qi">✉️</span><span class="ql">報告・相談</span></div>
           </div>
-          <div class="card">
-            <div class="ctitle">📢 最新の業者情報</div>
-            <div id="homeVendor"></div>
-          </div>
-          <div class="card">
-            <div class="ctitle">📋 本日のチェックリスト状況</div>
-            <div id="homeCheck"></div>
-          </div>
+          <div class="card"><div class="ctitle">📢 最新の業者情報</div><div id="homeVendor"></div></div>
+          <div class="card"><div class="ctitle">📋 本日のチェックリスト状況</div><div id="homeCheck"></div></div>
         </div>
 
         <!-- CHECKLIST -->
         <div class="view" id="v-check">
           <div class="card">
             <div class="ctabs">
-              <button class="ctab active" onclick="switchTab('morning')">🌅 朝の業務</button>
-              <button class="ctab" onclick="switchTab('dialysis')">💉 透析中</button>
+              <button class="ctab active" onclick="switchCLTab('morning')">🌅 朝の業務</button>
+              <button class="ctab" onclick="switchCLTab('dialysis')">💉 透析中</button>
             </div>
             <div class="prog-wrap"><div class="prog-bar" id="progBar" style="width:0%"></div></div>
             <div class="prog-txt" id="progTxt">0 / 0 完了</div>
             <div id="clItems"></div>
-            <button class="btn-reset" onclick="resetCL()">🔄 リセット</button>
+            <button class="btn-sec" style="margin-top:14px;" onclick="resetCL()">🔄 リセット</button>
           </div>
         </div>
 
         <!-- VENDOR -->
         <div class="view" id="v-vendor">
-          <!-- 管理者投稿フォーム -->
           <div class="vform admin-only" id="vForm" style="display:none;">
-            <div class="vform-title">＋ 業者情報を追加（管理者）</div>
-            <div class="fgroup">
-              <label class="flabel">業者名</label>
-              <input type="text" class="fctl" id="vName" placeholder="例：〇〇医療機器">
-            </div>
-            <div class="fgroup">
-              <label class="flabel">内容</label>
-              <textarea class="fctl" id="vCont" rows="3" placeholder="業者対応の内容を入力"></textarea>
-            </div>
+            <div class="vform-title">＋ 業者情報を投稿（管理者）</div>
+            <div class="fgroup"><label class="flabel">業者名</label><input type="text" class="fctl" id="vName" placeholder="例：〇〇医療機器"></div>
+            <div class="fgroup"><label class="flabel">内容</label><textarea class="fctl" id="vCont" rows="3" placeholder="業者対応の内容を入力"></textarea></div>
             <div class="frow">
-              <div class="fgroup">
-                <label class="flabel">スタッフへの影響</label>
-                <input type="text" class="fctl" id="vImpact" placeholder="例：通常運用可">
-              </div>
-              <div class="fgroup">
-                <label class="flabel">対応期限</label>
-                <input type="date" class="fctl" id="vDeadline">
-              </div>
+              <div class="fgroup"><label class="flabel">スタッフへの影響</label><input type="text" class="fctl" id="vImpact" placeholder="例：通常運用可"></div>
+              <div class="fgroup"><label class="flabel">対応期限</label><input type="date" class="fctl" id="vDeadline"></div>
             </div>
-            <button class="btn-pri" onclick="addVendor()">投稿する</button>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn-pri" onclick="addVendor()">投稿する</button>
+              <button class="btn-sec" onclick="genLineMsg()">📱 LINEメッセージを生成</button>
+            </div>
+            <div id="lineMsgBox" style="display:none;margin-top:12px;background:white;border:1px solid var(--gray-200);border-radius:var(--r);padding:12px;">
+              <div style="font-size:11px;color:var(--gray-400);margin-bottom:6px;">以下をコピーしてLINEに貼り付けてください</div>
+              <pre id="lineMsg" style="font-size:12px;white-space:pre-wrap;line-height:1.7;color:var(--gray-800);"></pre>
+              <button class="btn-sec btn-sm" style="margin-top:8px;" onclick="copyLineMsg()">📋 コピー</button>
+            </div>
           </div>
-          <div class="card">
-            <div class="ctitle">🔧 業者情報掲示板</div>
-            <div id="vList"></div>
-          </div>
+          <div class="card"><div class="ctitle">🔧 業者情報掲示板</div><div id="vList"></div></div>
         </div>
 
         <!-- MANUAL -->
         <div class="view" id="v-manual">
-          <div class="card">
-            <div class="ctitle">📁 マニュアル・手順書</div>
-            <div class="mcat">
-              <div class="mcat-title">🔴 緊急・イレギュラー対応</div>
-              <div class="mlink" onclick="openDoc('停電作業手順')">
-                📄 停電作業手順書<span class="badge br" style="margin-left:8px;">年1回</span>
-                <span class="mlink-arrow">▶</span>
-              </div>
-              <div class="mlink" onclick="openDoc('透析装置トラブル対応')">
-                📄 透析装置トラブル対応マニュアル<span class="mlink-arrow">▶</span>
-              </div>
-              <div class="mlink" onclick="openDoc('レントゲントラブル')">
-                📄 レントゲントラブル対応<span class="mlink-arrow">▶</span>
-              </div>
-            </div>
-            <div class="mcat">
-              <div class="mcat-title">📅 定期業務</div>
-              <div class="mlink" onclick="openDoc('月次定期点検')">
-                📄 月次定期点検手順<span class="mlink-arrow">▶</span>
-              </div>
-              <div class="mlink" onclick="openDoc('機械室日常点検')">
-                📄 機械室日常点検チェック<span class="mlink-arrow">▶</span>
-              </div>
-            </div>
-            <div class="mcat">
-              <div class="mcat-title">👤 患者・臨床対応</div>
-              <div class="mlink" onclick="openDoc('VAエコー評価')">
-                📄 VAエコー評価手順
-                <span class="badge bo" style="margin-left:8px;">専門</span>
-                <span class="mlink-arrow">▶</span>
-              </div>
-              <div class="mlink" onclick="openDoc('穿刺チェックリスト')">
-                📄 穿刺チェックリスト記入方法<span class="mlink-arrow">▶</span>
-              </div>
-            </div>
-            <div class="mcat">
-              <div class="mcat-title">📋 管理・物品</div>
-              <div class="mlink" onclick="openDoc('物品注文・在庫管理')">
-                📄 物品注文・在庫管理手順<span class="mlink-arrow">▶</span>
-              </div>
-              <div class="mlink" onclick="openDoc('業者対応フロー')">
-                📄 業者対応フロー<span class="mlink-arrow">▶</span>
-              </div>
-            </div>
-          </div>
+          <div class="card"><div class="ctitle">📁 マニュアル・手順書</div><div id="manualList"></div></div>
         </div>
 
         <!-- REPORT -->
         <div class="view" id="v-report">
           <div class="card">
             <div class="ctitle">✉️ 報告・相談フォーム</div>
-            <div class="frow" style="margin-bottom:14px;">
-              <div class="fgroup">
-                <label class="flabel">種別</label>
+            <div class="frow" style="margin-bottom:13px;">
+              <div class="fgroup"><label class="flabel">種別</label>
                 <select class="fctl" id="rType">
                   <option value="報告">📋 報告</option>
                   <option value="連絡">📢 連絡</option>
@@ -490,8 +327,7 @@ textarea.fctl{resize:vertical;min-height:100px;}
                   <option value="機器不具合">🔧 機器不具合</option>
                 </select>
               </div>
-              <div class="fgroup">
-                <label class="flabel">緊急度</label>
+              <div class="fgroup"><label class="flabel">緊急度</label>
                 <select class="fctl" id="rUrg">
                   <option value="低">🟢 低（通常業務内）</option>
                   <option value="中">🟡 中（本日中に確認）</option>
@@ -499,13 +335,10 @@ textarea.fctl{resize:vertical;min-height:100px;}
                 </select>
               </div>
             </div>
-            <div class="fgroup">
-              <label class="flabel">内容</label>
-              <textarea class="fctl" id="rCont" rows="5"
-                placeholder="内容を入力してください。&#10;例：〇番透析装置から異音がしています。発生は〇時頃。現在は通常稼働中です。"></textarea>
+            <div class="fgroup"><label class="flabel">内容</label>
+              <textarea class="fctl" id="rCont" rows="5" placeholder="内容を入力してください。&#10;例：〇番透析装置から異音がしています。発生は〇時頃。現在通常稼働中です。"></textarea>
             </div>
-            <div class="fgroup">
-              <label class="flabel">対応状況</label>
+            <div class="fgroup"><label class="flabel">対応状況</label>
               <select class="fctl" id="rStat">
                 <option value="対応済み">✅ 対応済み</option>
                 <option value="対応中">🔄 対応中</option>
@@ -514,59 +347,142 @@ textarea.fctl{resize:vertical;min-height:100px;}
             </div>
             <button class="btn-pri" onclick="sendReport()">送信する</button>
           </div>
-          <div class="card">
-            <div class="ctitle">📜 送信履歴</div>
-            <div id="rList"></div>
-          </div>
+          <div class="card"><div class="ctitle">📜 送信履歴</div><div id="rList"></div></div>
         </div>
 
         <!-- ADMIN -->
         <div class="view" id="v-admin">
-          <div class="card" style="border:1.5px solid #FED7AA;background:#FFFBF5;">
-            <div class="ctitle" style="color:#C2410C;border-color:#FED7AA;">🔐 セキュリティ管理チェック</div>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div style="display:flex;align-items:flex-start;gap:10px;padding:11px 13px;
-                          background:#FFF7ED;border:1px solid #FED7AA;border-radius:var(--r);">
-                <span style="font-size:18px;margin-top:1px;">🔄</span>
-                <div>
-                  <div style="font-size:13px;font-weight:700;color:#92400E;">PINコードの定期変更</div>
-                  <div style="font-size:12px;color:#B45309;margin-top:3px;line-height:1.5;">
-                    月1回を目安にスタッフのPINを変更してください。<br>
-                    変更はindex.htmlのSTAFF一覧を編集→GitHubにアップロード。
-                  </div>
-                </div>
+          <!-- セキュリティ注意（常時表示） -->
+          <div class="sec-card">
+            <div class="sec-card-title">🔐 セキュリティ管理チェック</div>
+            <div class="sec-item sec-orange">
+              <span style="font-size:18px;">🔄</span>
+              <div>
+                <div class="sec-item-title">PINコードの定期変更（月1回推奨）</div>
+                <div class="sec-item-body">「スタッフ管理」タブからPINを変更し、「設定の同期」タブで同期URLを生成してLINEで共有してください。</div>
               </div>
-              <div style="display:flex;align-items:flex-start;gap:10px;padding:11px 13px;
-                          background:#FEF2F2;border:1px solid #FECACA;border-radius:var(--r);">
-                <span style="font-size:18px;margin-top:1px;">🚪</span>
-                <div>
-                  <div style="font-size:13px;font-weight:700;color:#991B1B;">退職者のPIN削除</div>
-                  <div style="font-size:12px;color:#B91C1C;margin-top:3px;line-height:1.5;">
-                    退職・異動が発生したら<strong>即日</strong>PINを削除してください。<br>
-                    対象スタッフのpin欄を削除またはpinを無効な値に変更。
-                  </div>
-                </div>
+            </div>
+            <div class="sec-item sec-red">
+              <span style="font-size:18px;">🚪</span>
+              <div>
+                <div class="sec-item-title" style="color:#991B1B;">退職者のPINを即日削除してください</div>
+                <div class="sec-item-body" style="color:#B91C1C;">「スタッフ管理」タブで該当スタッフを削除し、同期URLを再生成・配布してください。</div>
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="ctitle">📊 アクセス統計</div>
-            <div class="stat-grid" id="aStats"></div>
-          </div>
-          <div class="card">
-            <div class="ctitle">📋 閲覧ログ（直近30件）</div>
-            <div style="overflow-x:auto;">
-              <table class="atbl">
-                <thead><tr><th>日時</th><th>スタッフ名</th><th>操作</th></tr></thead>
-                <tbody id="aLog"></tbody>
-              </table>
+
+          <!-- 管理タブ -->
+          <div class="card" style="padding-bottom:4px;">
+            <div class="atabs">
+              <button class="atab active" onclick="adminTab('stats')">📊 統計</button>
+              <button class="atab" onclick="adminTab('staff')">👥 スタッフ</button>
+              <button class="atab" onclick="adminTab('cl')">✅ チェックリスト</button>
+              <button class="atab" onclick="adminTab('manual')">📁 マニュアル</button>
+              <button class="atab" onclick="adminTab('sync')">🔗 設定の同期</button>
             </div>
-          </div>
-          <div class="card">
-            <div class="ctitle">📨 報告・相談一覧</div>
-            <div id="aReports"></div>
-          </div>
-        </div>
+
+            <!-- 統計・ログ -->
+            <div class="atab-pane active" id="ap-stats">
+              <div class="stat-grid" id="aStats"></div>
+              <div style="margin-top:16px;overflow-x:auto;">
+                <table class="atbl">
+                  <thead><tr><th>日時</th><th>スタッフ名</th><th>操作</th></tr></thead>
+                  <tbody id="aLog"></tbody>
+                </table>
+              </div>
+              <div style="margin-top:16px;">
+                <div class="ctitle">📨 報告・相談</div>
+                <div id="aReports"></div>
+              </div>
+            </div>
+
+            <!-- スタッフ管理 -->
+            <div class="atab-pane" id="ap-staff">
+              <button class="btn-pri btn-sm" style="margin-bottom:12px;" onclick="toggleAddForm('staffForm')">＋ スタッフを追加</button>
+              <div class="add-form" id="staffForm">
+                <div class="add-form-row">
+                  <div class="fgroup"><label class="flabel">スタッフ名</label><input type="text" class="fctl" id="newStaffName" placeholder="例：山田 花子"></div>
+                  <div class="fgroup"><label class="flabel">PIN（4桁）</label><input type="text" class="fctl" id="newStaffPin" placeholder="1234" maxlength="4"></div>
+                  <div class="fgroup"><label class="flabel">役割</label>
+                    <select class="fctl" id="newStaffRole"><option value="staff">スタッフ</option><option value="admin">管理者</option></select>
+                  </div>
+                  <div class="fgroup" style="display:flex;align-items:flex-end;">
+                    <button class="btn-pri" onclick="addStaff()">追加</button>
+                  </div>
+                </div>
+              </div>
+              <div style="overflow-x:auto;">
+                <table class="atbl">
+                  <thead><tr><th>名前</th><th>PIN</th><th>役割</th><th style="width:120px;">操作</th></tr></thead>
+                  <tbody id="staffTbody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- チェックリスト管理 -->
+            <div class="atab-pane" id="ap-cl">
+              <div class="ctabs" style="margin-bottom:12px;">
+                <button class="ctab active" onclick="switchAdminCLTab('morning')">🌅 朝の業務</button>
+                <button class="ctab" onclick="switchAdminCLTab('dialysis')">💉 透析中</button>
+              </div>
+              <button class="btn-pri btn-sm" style="margin-bottom:12px;" onclick="toggleAddForm('clForm')">＋ 項目を追加</button>
+              <div class="add-form" id="clForm">
+                <div class="fgroup"><label class="flabel">項目名</label><input type="text" class="fctl" id="newCLText" placeholder="例：消灯確認"></div>
+                <div class="fgroup"><label class="flabel">補足メモ（任意）</label><input type="text" class="fctl" id="newCLNote" placeholder="例：全室の電気を消したか確認"></div>
+                <button class="btn-pri" onclick="addCLItem()">追加</button>
+              </div>
+              <div id="clAdminList"></div>
+            </div>
+
+            <!-- マニュアル管理 -->
+            <div class="atab-pane" id="ap-manual">
+              <button class="btn-pri btn-sm" style="margin-bottom:12px;" onclick="toggleAddForm('catForm')">＋ カテゴリを追加</button>
+              <div class="add-form" id="catForm">
+                <div class="add-form-row">
+                  <div class="fgroup"><label class="flabel">カテゴリ名</label><input type="text" class="fctl" id="newCatName" placeholder="例：新患対応"></div>
+                  <div class="fgroup"><label class="flabel">アイコン（絵文字）</label><input type="text" class="fctl" id="newCatIcon" placeholder="例：🆕"></div>
+                  <div class="fgroup" style="display:flex;align-items:flex-end;">
+                    <button class="btn-pri" onclick="addCategory()">追加</button>
+                  </div>
+                </div>
+              </div>
+              <div id="manualAdminList"></div>
+            </div>
+
+            <!-- 設定の同期 -->
+            <div class="atab-pane" id="ap-sync">
+              <div class="sync-box">
+                <div class="sync-box-title">🔗 他の端末に設定を共有する</div>
+                <div style="font-size:12px;color:var(--gray-600);line-height:1.6;margin-bottom:10px;">
+                  スタッフ・チェックリスト・マニュアルの設定をURLに変換します。<br>
+                  LINEでこのURLを送ると、受け取った端末に設定が自動適用されます。
+                </div>
+                <button class="btn-pri" onclick="generateSyncUrl()">🔗 同期URLを生成してコピー</button>
+                <div id="syncUrlBox" style="display:none;margin-top:10px;">
+                  <div class="sync-url" id="syncUrlText"></div>
+                  <div style="font-size:11px;color:var(--gray-400);">↑ このURLをLINEに貼り付けてスタッフに送ってください</div>
+                </div>
+              </div>
+              <div class="sync-box">
+                <div class="sync-box-title">💾 設定をバックアップ（JSONダウンロード）</div>
+                <div style="font-size:12px;color:var(--gray-600);margin-bottom:10px;">設定ファイルをPCに保存します。</div>
+                <button class="btn-sec" onclick="exportJson()">📥 JSONファイルをダウンロード</button>
+              </div>
+              <div class="sync-box">
+                <div class="sync-box-title">📤 設定を復元（JSONインポート）</div>
+                <div style="font-size:12px;color:var(--gray-600);margin-bottom:10px;">バックアップファイルから設定を復元します。</div>
+                <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importJson(event)">
+                <button class="btn-sec" onclick="document.getElementById('importFile').click()">📂 JSONファイルを選択</button>
+              </div>
+              <div class="sync-box" style="border-color:#FECACA;">
+                <div class="sync-box-title" style="color:var(--red);">⚠️ 初期化</div>
+                <div style="font-size:12px;color:var(--gray-600);margin-bottom:10px;">すべての設定をデフォルトに戻します。</div>
+                <button class="btn-danger" onclick="resetToDefaults()">🔄 初期設定に戻す</button>
+              </div>
+            </div>
+
+          </div><!-- /card -->
+        </div><!-- /v-admin -->
 
       </div><!-- /content -->
     </div><!-- /main -->
@@ -576,137 +492,176 @@ textarea.fctl{resize:vertical;min-height:100px;}
 <div class="toast" id="toast"></div>
 
 <script>
-// ── GAS連携（GitHub Pages本番用）──────────────────
-// GASデプロイ後にURLを入れてください
-const GAS_URL = '';
-const USE_GAS  = GAS_URL !== '';
-
-// ── スタッフ設定（22名 + 管理者）─────────────────
-// ※ name と pin を実際のものに変更してください
-// ※ 管理者PINは必ず変更してください
-const STAFF = [
-  { id:1,  name:'管理者（CE）',   pin:'0000', role:'admin' },
-  { id:24, name:'管理者２',       pin:'0001', role:'admin' },
-  { id:2,  name:'スタッフ 02', pin:'1234', role:'staff' },
-  { id:3,  name:'スタッフ 03', pin:'1234', role:'staff' },
-  { id:4,  name:'スタッフ 04', pin:'1234', role:'staff' },
-  { id:5,  name:'スタッフ 05', pin:'1234', role:'staff' },
-  { id:6,  name:'スタッフ 06', pin:'1234', role:'staff' },
-  { id:7,  name:'スタッフ 07', pin:'1234', role:'staff' },
-  { id:8,  name:'スタッフ 08', pin:'1234', role:'staff' },
-  { id:9,  name:'スタッフ 09', pin:'1234', role:'staff' },
-  { id:10, name:'スタッフ 10', pin:'1234', role:'staff' },
-  { id:11, name:'スタッフ 11', pin:'1234', role:'staff' },
-  { id:12, name:'スタッフ 12', pin:'1234', role:'staff' },
-  { id:13, name:'スタッフ 13', pin:'1234', role:'staff' },
-  { id:14, name:'スタッフ 14', pin:'1234', role:'staff' },
-  { id:15, name:'スタッフ 15', pin:'1234', role:'staff' },
-  { id:16, name:'スタッフ 16', pin:'1234', role:'staff' },
-  { id:17, name:'スタッフ 17', pin:'1234', role:'staff' },
-  { id:18, name:'スタッフ 18', pin:'1234', role:'staff' },
-  { id:19, name:'スタッフ 19', pin:'1234', role:'staff' },
-  { id:20, name:'スタッフ 20', pin:'1234', role:'staff' },
-  { id:21, name:'スタッフ 21', pin:'1234', role:'staff' },
-  { id:22, name:'スタッフ 22', pin:'1234', role:'staff' },
-  { id:23, name:'スタッフ 23', pin:'1234', role:'staff' },
-];
-
-// ── チェックリスト ─────────────────────────────
-const CL = {
+// ═══════════════════════════════════════════
+// 1. デフォルトデータ
+// ═══════════════════════════════════════════
+const DEFAULTS = {
+  staff:[
+    {id:1, name:'管理者（CE）', pin:'0000', role:'admin'},
+    {id:24,name:'管理者２',     pin:'0001', role:'admin'},
+    {id:2, name:'スタッフ 02',  pin:'1234', role:'staff'},
+    {id:3, name:'スタッフ 03',  pin:'1234', role:'staff'},
+    {id:4, name:'スタッフ 04',  pin:'1234', role:'staff'},
+    {id:5, name:'スタッフ 05',  pin:'1234', role:'staff'},
+    {id:6, name:'スタッフ 06',  pin:'1234', role:'staff'},
+    {id:7, name:'スタッフ 07',  pin:'1234', role:'staff'},
+    {id:8, name:'スタッフ 08',  pin:'1234', role:'staff'},
+    {id:9, name:'スタッフ 09',  pin:'1234', role:'staff'},
+    {id:10,name:'スタッフ 10',  pin:'1234', role:'staff'},
+    {id:11,name:'スタッフ 11',  pin:'1234', role:'staff'},
+    {id:12,name:'スタッフ 12',  pin:'1234', role:'staff'},
+    {id:13,name:'スタッフ 13',  pin:'1234', role:'staff'},
+    {id:14,name:'スタッフ 14',  pin:'1234', role:'staff'},
+    {id:15,name:'スタッフ 15',  pin:'1234', role:'staff'},
+    {id:16,name:'スタッフ 16',  pin:'1234', role:'staff'},
+    {id:17,name:'スタッフ 17',  pin:'1234', role:'staff'},
+    {id:18,name:'スタッフ 18',  pin:'1234', role:'staff'},
+    {id:19,name:'スタッフ 19',  pin:'1234', role:'staff'},
+    {id:20,name:'スタッフ 20',  pin:'1234', role:'staff'},
+    {id:21,name:'スタッフ 21',  pin:'1234', role:'staff'},
+    {id:22,name:'スタッフ 22',  pin:'1234', role:'staff'},
+    {id:23,name:'スタッフ 23',  pin:'1234', role:'staff'},
+  ],
   morning:[
-    { id:'m1', text:'ゴミ掃除',         note:'植物周りに多いため重点的に確認' },
-    { id:'m2', text:'テレビをつける',     note:'患者さんが過ごしやすい環境に' },
-    { id:'m3', text:'エタノール暖炉をつける', note:'冬季のみ・安全確認後に点火' },
-    { id:'m4', text:'エアコン調整',      note:'患者さんが寒くないか確認（18〜22℃目安）' },
+    {id:'m1',text:'ゴミ掃除',            note:'植物周りに多いため重点的に確認'},
+    {id:'m2',text:'テレビをつける',        note:'患者さんが過ごしやすい環境に'},
+    {id:'m3',text:'エタノール暖炉をつける', note:'冬季のみ・安全確認後に点火'},
+    {id:'m4',text:'エアコン調整',          note:'患者さんが寒くないか確認（18〜22℃目安）'},
   ],
   dialysis:[
-    { id:'d1', text:'穿刺チェックリスト記入',    note:'記入漏れのないよう確認' },
-    { id:'d2', text:'機械室点検',               note:'異常がある場合は即報告' },
-    { id:'d3', text:'透析終了時のスタッフ配置確認', note:'休憩終了・全員揃っているか確認' },
-    { id:'d4', text:'装置・回路の異音確認',       note:'異音がある場合は装置番号を記録して報告' },
-  ]
-};
-
-// ── マニュアルURLマップ ───────────────────────
-// 実際のファイルURLを設定してください
-// 例：'./manuals/停電作業手順.pdf' または Google Drive共有URL
-const DOCS = {
-  '停電作業手順'          : '',
-  '透析装置トラブル対応'  : '',
-  'レントゲントラブル'    : '',
-  '月次定期点検'          : '',
-  '機械室日常点検'        : '',
-  'VAエコー評価'          : '',
-  '穿刺チェックリスト'    : '',
-  '物品注文・在庫管理'    : '',
-  '業者対応フロー'        : '',
-};
-
-// ── アプリ状態 ────────────────────────────────
-const S = {
-  user:    null,
-  tab:     'morning',
-  checks:  { morning:{}, dialysis:{} },
-  vendors: [
-    {
-      id:1, date:'2025-06-10',
-      vendor:'〇〇医療機器株式会社',
-      cont:'ポンプユニットのベアリング消耗が通常より早い傾向。現時点では安全に使用可能。定期交換の前倒しを推奨。',
-      impact:'半年以内に交換を予定。通常業務への影響なし。',
-      deadline:'2025-12-31', confirmed:[]
-    },
-    {
-      id:2, date:'2025-06-05',
-      vendor:'△△サービス',
-      cont:'RO装置の年次点検を実施。フィルター交換完了。次回は来年同時期。',
-      impact:'対応完了。追加対応不要。', deadline:'', confirmed:[]
-    }
+    {id:'d1',text:'穿刺チェックリスト記入',    note:'記入漏れのないよう確認'},
+    {id:'d2',text:'機械室点検',               note:'異常がある場合は即報告'},
+    {id:'d3',text:'透析終了時のスタッフ配置確認',note:'休憩終了・全員揃っているか確認'},
+    {id:'d4',text:'装置・回路の異音確認',       note:'異音がある場合は装置番号を記録して報告'},
   ],
-  reports: [],
-  logs:    [],
-  nextVid: 3,
+  categories:[
+    {id:'cat1',name:'緊急・イレギュラー対応',icon:'🔴',links:[
+      {id:'l1',text:'停電作業手順書',          url:'',badge:'年1回',bc:'br'},
+      {id:'l2',text:'透析装置トラブル対応マニュアル',url:'',badge:'',bc:''},
+      {id:'l3',text:'レントゲントラブル対応',  url:'',badge:'',bc:''},
+    ]},
+    {id:'cat2',name:'定期業務',icon:'📅',links:[
+      {id:'l4',text:'月次定期点検手順',        url:'',badge:'',bc:''},
+      {id:'l5',text:'機械室日常点検チェック',  url:'',badge:'',bc:''},
+    ]},
+    {id:'cat3',name:'患者・臨床対応',icon:'👤',links:[
+      {id:'l6',text:'VAエコー評価手順',        url:'',badge:'専門',bc:'bo'},
+      {id:'l7',text:'穿刺チェックリスト記入方法',url:'',badge:'',bc:''},
+    ]},
+    {id:'cat4',name:'管理・物品',icon:'📋',links:[
+      {id:'l8',text:'物品注文・在庫管理手順',  url:'',badge:'',bc:''},
+      {id:'l9',text:'業者対応フロー',          url:'',badge:'',bc:''},
+    ]},
+  ],
 };
 
-// ── 初期化 ────────────────────────────────────
-function init(){
-  const sel = document.getElementById('staffSel');
-  STAFF.forEach(s=>{
-    const o = document.createElement('option');
-    o.value = s.id; o.textContent = s.name;
+// ═══════════════════════════════════════════
+// 2. LocalStorage ヘルパー
+// ═══════════════════════════════════════════
+const ls={
+  get:(k,fb)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):fb;}catch{return fb;}},
+  set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}},
+};
+const K={STAFF:'p_staff',MORNING:'p_morning',DIALYSIS:'p_dialysis',
+  CATS:'p_cats',VENDORS:'p_vendors',REPORTS:'p_reports',LOGS:'p_logs',
+  CL_STATE:'p_cl_state',CL_DATE:'p_cl_date'};
+
+// ═══════════════════════════════════════════
+// 3. アプリ状態
+// ═══════════════════════════════════════════
+let CFG={
+  staff:    ls.get(K.STAFF,    DEFAULTS.staff),
+  morning:  ls.get(K.MORNING,  DEFAULTS.morning),
+  dialysis: ls.get(K.DIALYSIS, DEFAULTS.dialysis),
+  cats:     ls.get(K.CATS,     DEFAULTS.categories),
+};
+let SES={
+  user:null, clTab:'morning', adminClTab:'morning', adminTab:'stats',
+  vendors: ls.get(K.VENDORS,[]),
+  reports: ls.get(K.REPORTS,[]),
+  logs:    ls.get(K.LOGS,[]),
+  checks:  {},
+};
+let nextId=100;
+
+// チェックリスト状態を日付でリセット
+function initClState(){
+  const today=new Date().toDateString();
+  if(ls.get(K.CL_DATE,'')!==today){
+    SES.checks={morning:{},dialysis:{}};
+    ls.set(K.CL_STATE,SES.checks);
+    ls.set(K.CL_DATE,today);
+  } else {
+    SES.checks=ls.get(K.CL_STATE,{morning:{},dialysis:{}});
+  }
+}
+
+function saveCFG(){
+  ls.set(K.STAFF,CFG.staff);ls.set(K.MORNING,CFG.morning);
+  ls.set(K.DIALYSIS,CFG.dialysis);ls.set(K.CATS,CFG.cats);
+}
+
+// ═══════════════════════════════════════════
+// 4. 同期URL（設定をURLハッシュにエンコード）
+// ═══════════════════════════════════════════
+function checkSyncUrl(){
+  const h=window.location.hash;
+  if(!h.startsWith('#cfg=')) return;
+  try{
+    const cfg=JSON.parse(atob(decodeURIComponent(h.slice(5))));
+    if(cfg.staff)   {CFG.staff=cfg.staff;   ls.set(K.STAFF,cfg.staff);}
+    if(cfg.morning) {CFG.morning=cfg.morning;ls.set(K.MORNING,cfg.morning);}
+    if(cfg.dialysis){CFG.dialysis=cfg.dialysis;ls.set(K.DIALYSIS,cfg.dialysis);}
+    if(cfg.cats)    {CFG.cats=cfg.cats;      ls.set(K.CATS,cfg.cats);}
+    history.replaceState(null,'',window.location.pathname);
+    buildStaffDropdown();
+    showToast('✅ 設定を更新しました');
+  } catch(e){console.warn('sync url error',e);}
+}
+
+function generateSyncUrl(){
+  const cfg={staff:CFG.staff,morning:CFG.morning,dialysis:CFG.dialysis,cats:CFG.cats};
+  const encoded=encodeURIComponent(btoa(JSON.stringify(cfg)));
+  const url=window.location.href.split('#')[0]+'#cfg='+encoded;
+  navigator.clipboard.writeText(url).then(()=>{
+    document.getElementById('syncUrlBox').style.display='block';
+    document.getElementById('syncUrlText').textContent=url;
+    showToast('📋 URLをクリップボードにコピーしました');
+  }).catch(()=>{
+    document.getElementById('syncUrlBox').style.display='block';
+    document.getElementById('syncUrlText').textContent=url;
+    showToast('↑ URLをコピーしてLINEに貼り付けてください');
+  });
+}
+
+// ═══════════════════════════════════════════
+// 5. ログイン / ログアウト
+// ═══════════════════════════════════════════
+function buildStaffDropdown(){
+  const sel=document.getElementById('staffSel');
+  const cur=sel.value;
+  sel.innerHTML='<option value="">— 選択してください —</option>';
+  CFG.staff.forEach(s=>{
+    const o=document.createElement('option');
+    o.value=s.id;o.textContent=s.name+(s.role==='admin'?' ★':'');
     sel.appendChild(o);
   });
-  tickDate();
-  setInterval(tickDate, 30000);
-  document.getElementById('pinIn').addEventListener('keydown',e=>{
-    if(e.key==='Enter') doLogin();
-  });
+  if(cur) sel.value=cur;
 }
 
-function tickDate(){
-  const d = new Date();
-  const days=['日','月','火','水','木','金','土'];
-  const el = document.getElementById('pdate');
-  if(el) el.textContent =
-    `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${days[d.getDay()]}）`;
-}
-
-// ── ログイン / ログアウト ─────────────────────
 function doLogin(){
-  const id  = parseInt(document.getElementById('staffSel').value);
-  const pin = document.getElementById('pinIn').value;
-  const err = document.getElementById('lerr');
-  if(!id){ err.textContent='スタッフ名を選択してください'; err.style.display='block'; return; }
-  const u = STAFF.find(s=>s.id===id);
-  if(!u||u.pin!==pin){ err.style.display='block'; document.getElementById('pinIn').value=''; return; }
+  const id=parseInt(document.getElementById('staffSel').value);
+  const pin=document.getElementById('pinIn').value;
+  const err=document.getElementById('lerr');
+  if(!id){err.textContent='スタッフ名を選択してください';err.style.display='block';return;}
+  const u=CFG.staff.find(s=>s.id===id);
+  if(!u||u.pin!==pin){err.style.display='block';document.getElementById('pinIn').value='';return;}
   err.style.display='none';
-  S.user = u;
+  SES.user=u;
   pushLog('ログイン');
-  if(USE_GAS) gasPost({type:'login',name:u.name,time:now()});
-
   document.getElementById('loginPage').style.display='none';
   document.getElementById('appPage').style.display='block';
-  document.getElementById('sbName').textContent = u.name;
-
+  document.getElementById('sbName').textContent=u.name;
   if(u.role==='admin'){
     document.querySelectorAll('.admin-only').forEach(el=>el.style.display='flex');
     document.getElementById('vForm').style.display='block';
@@ -715,7 +670,7 @@ function doLogin(){
 }
 
 function doLogout(){
-  S.user=null;
+  SES.user=null;
   document.getElementById('appPage').style.display='none';
   document.getElementById('loginPage').style.display='flex';
   document.getElementById('staffSel').value='';
@@ -724,262 +679,485 @@ function doLogout(){
   document.getElementById('vForm').style.display='none';
 }
 
-// ── ナビ ─────────────────────────────────────
-const TITLES = {
-  home:'🏠 ホーム', check:'✅ チェックリスト',
-  vendor:'🔧 業者情報', manual:'📁 マニュアル',
-  report:'✉️ 報告・相談', admin:'🔐 管理者ページ'
-};
+// ═══════════════════════════════════════════
+// 6. ナビゲーション
+// ═══════════════════════════════════════════
+const TITLES={home:'🏠 ホーム',check:'✅ チェックリスト',vendor:'🔧 業者情報',
+  manual:'📁 マニュアル',report:'✉️ 報告・相談',admin:'🔐 管理者ページ'};
+
 function go(v){
   document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
   document.getElementById('v-'+v).classList.add('active');
-  document.querySelectorAll('.ni').forEach(el=>{
-    el.classList.toggle('active', el.getAttribute('onclick')?.includes(`'${v}'`));
-  });
-  document.getElementById('ptitle').textContent = TITLES[v];
+  document.querySelectorAll('.ni').forEach(el=>
+    el.classList.toggle('active',el.getAttribute('onclick')?.includes(`'${v}'`)));
+  document.getElementById('ptitle').textContent=TITLES[v];
   if(v==='home')   renderHome();
   if(v==='check')  renderCL();
   if(v==='vendor') renderVendor();
+  if(v==='manual') renderManual();
   if(v==='report') renderReports();
   if(v==='admin')  renderAdmin();
   pushLog(TITLES[v]+'を閲覧');
-  closeSb(); tickDate();
+  closeSb();tickDate();
 }
 
-// ── ホーム ───────────────────────────────────
+// ═══════════════════════════════════════════
+// 7. ホーム
+// ═══════════════════════════════════════════
 function renderHome(){
-  // 業者情報プレビュー
-  const el = document.getElementById('homeVendor');
-  if(!S.vendors.length){
-    el.innerHTML='<p style="color:var(--gray-400);font-size:13px;">業者情報はまだありません</p>';
+  const ve=document.getElementById('homeVendor');
+  if(!SES.vendors.length){
+    ve.innerHTML='<p style="color:var(--gray-400);font-size:13px;">業者情報はまだありません</p>';
   } else {
-    const v = S.vendors[0];
-    el.innerHTML=`
-      <div style="border-left:3px solid var(--navy);padding-left:12px;">
-        <div style="font-size:11px;color:var(--gray-400);">${v.date} ／ ${v.vendor}</div>
-        <div style="font-size:13px;margin-top:4px;line-height:1.6;">${v.cont}</div>
-        ${v.deadline?`<div style="margin-top:6px;"><span class="badge bo">期限：${v.deadline}</span></div>`:''}
-      </div>
-      <div style="margin-top:9px;font-size:12px;">
-        <a style="color:var(--navy);cursor:pointer;font-weight:600;" onclick="go('vendor')">→ 全件を見る</a>
-      </div>`;
+    const v=SES.vendors[0];
+    ve.innerHTML=`<div style="border-left:3px solid var(--navy);padding-left:12px;">
+      <div style="font-size:11px;color:var(--gray-400);">${v.date} ／ ${v.vendor}</div>
+      <div style="font-size:13px;margin-top:4px;line-height:1.6;">${v.cont}</div>
+      ${v.deadline?`<div style="margin-top:5px;"><span class="badge bo">期限：${v.deadline}</span></div>`:''}
+    </div><div style="margin-top:8px;font-size:12px;">
+      <a style="color:var(--navy);cursor:pointer;font-weight:600;" onclick="go('vendor')">→ 全件を見る</a>
+    </div>`;
   }
-  // チェック状況
-  const cel = document.getElementById('homeCheck');
-  const m = CL.morning, d = CL.dialysis;
-  const md = m.filter(i=>S.checks.morning[i.id]).length;
-  const dd = d.filter(i=>S.checks.dialysis[i.id]).length;
-  cel.innerHTML=`
+  const m=CFG.morning,d=CFG.dialysis;
+  const md=m.filter(i=>SES.checks.morning?.[i.id]).length;
+  const dd=d.filter(i=>SES.checks.dialysis?.[i.id]).length;
+  document.getElementById('homeCheck').innerHTML=`
     <div style="display:flex;gap:20px;flex-wrap:wrap;">
-      <div>
-        <div style="font-size:11px;color:var(--gray-400);margin-bottom:4px;">🌅 朝の業務</div>
-        <span class="badge ${md===m.length?'bg':'bo'}">${md} / ${m.length} 完了</span>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--gray-400);margin-bottom:4px;">💉 透析中</div>
-        <span class="badge ${dd===d.length?'bg':'bo'}">${dd} / ${d.length} 完了</span>
-      </div>
+      <div><div style="font-size:11px;color:var(--gray-400);margin-bottom:4px;">🌅 朝の業務</div>
+        <span class="badge ${md===m.length?'bg':'bo'}">${md} / ${m.length} 完了</span></div>
+      <div><div style="font-size:11px;color:var(--gray-400);margin-bottom:4px;">💉 透析中</div>
+        <span class="badge ${dd===d.length?'bg':'bo'}">${dd} / ${d.length} 完了</span></div>
     </div>
     <div style="margin-top:9px;font-size:12px;">
       <a style="color:var(--navy);cursor:pointer;font-weight:600;" onclick="go('check')">→ チェックリストを開く</a>
     </div>`;
 }
 
-// ── チェックリスト ───────────────────────────
-function switchTab(t){
-  S.tab = t;
-  document.querySelectorAll('.ctab').forEach((el,i)=>{
-    el.classList.toggle('active',(i===0&&t==='morning')||(i===1&&t==='dialysis'));
-  });
+// ═══════════════════════════════════════════
+// 8. チェックリスト
+// ═══════════════════════════════════════════
+function switchCLTab(t){
+  SES.clTab=t;
+  document.querySelectorAll('.ctab').forEach((el,i)=>
+    el.classList.toggle('active',(i===0&&t==='morning')||(i===1&&t==='dialysis')));
   renderCL();
 }
 function renderCL(){
-  const items = CL[S.tab];
-  const st    = S.checks[S.tab];
-  const done  = items.filter(i=>st[i.id]).length;
-  document.getElementById('progBar').style.width = `${done/items.length*100}%`;
-  document.getElementById('progTxt').textContent = `${done} / ${items.length} 完了`;
-  document.getElementById('clItems').innerHTML = items.map(i=>`
+  const items=CFG[SES.clTab];
+  const st=SES.checks[SES.clTab]||{};
+  const done=items.filter(i=>st[i.id]).length;
+  document.getElementById('progBar').style.width=`${done/Math.max(items.length,1)*100}%`;
+  document.getElementById('progTxt').textContent=`${done} / ${items.length} 完了`;
+  document.getElementById('clItems').innerHTML=items.map(i=>`
     <div class="ci ${st[i.id]?'done':''}" onclick="toggleCI('${i.id}')">
       <div class="cbox">${st[i.id]?'✓':''}</div>
-      <div>
-        <div class="ctxt">${i.text}</div>
-        ${i.note?`<div class="cnote">${i.note}</div>`:''}
-      </div>
+      <div><div class="ctxt">${i.text}</div>${i.note?`<div class="cnote">${i.note}</div>`:''}</div>
     </div>`).join('');
 }
 function toggleCI(id){
-  const t = S.tab;
-  S.checks[t][id] = !S.checks[t][id];
-  const item = CL[t].find(i=>i.id===id);
-  pushLog(`「${item?.text}」を${S.checks[t][id]?'完了':'未完了に戻した'}`);
+  const t=SES.clTab;
+  if(!SES.checks[t]) SES.checks[t]={};
+  SES.checks[t][id]=!SES.checks[t][id];
+  ls.set(K.CL_STATE,SES.checks);
+  pushLog(`「${CFG[t].find(i=>i.id===id)?.text}」を${SES.checks[t][id]?'完了':'未完了に'}`);
   renderCL();
 }
 function resetCL(){
   if(!confirm('チェックリストをリセットしますか？')) return;
-  S.checks[S.tab]={};
-  renderCL(); toast('リセットしました');
+  SES.checks[SES.clTab]={};
+  ls.set(K.CL_STATE,SES.checks);
+  renderCL();showToast('リセットしました');
 }
 
-// ── 業者情報 ─────────────────────────────────
+// ═══════════════════════════════════════════
+// 9. 業者情報
+// ═══════════════════════════════════════════
 function renderVendor(){
-  const el = document.getElementById('vList');
-  if(!S.vendors.length){
-    el.innerHTML='<p style="color:var(--gray-400);font-size:13px;">業者情報はまだありません</p>';
-    return;
-  }
-  el.innerHTML = S.vendors.map(v=>{
-    const mine = v.confirmed.includes(S.user?.id);
-    return `
+  const el=document.getElementById('vList');
+  if(!SES.vendors.length){el.innerHTML='<p style="color:var(--gray-400);font-size:13px;">業者情報はまだありません</p>';return;}
+  el.innerHTML=SES.vendors.map(v=>`
     <div class="vpost">
       <div class="vhead">
         <div class="vname">🏢 ${v.vendor}</div>
-        <div class="vdate">${v.date}</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="vdate">${v.date}</span>
+          ${SES.user?.role==='admin'?`<button class="btn-danger btn-sm" onclick="deleteVendor(${v.id})">削除</button>`:''}
+        </div>
       </div>
       <div class="vcont">${v.cont}</div>
-      <div style="font-size:12px;color:var(--gray-600);margin-bottom:8px;">
-        👥 スタッフへの影響：${v.impact}
-      </div>
+      <div style="font-size:12px;color:var(--gray-600);margin-bottom:8px;">👥 スタッフへの影響：${v.impact}</div>
       <div class="vfoot">
         ${v.deadline?`<span class="badge bo">期限：${v.deadline}</span>`:'<span class="badge bn">期限なし</span>'}
-        <span class="badge ${mine?'bg':'bb'}" style="cursor:pointer;" onclick="confirmV(${v.id})">
-          ${mine?'✓ 確認済み':'確認する'}
-        </span>
-        <span class="badge bn">${v.confirmed.length}名確認済み</span>
       </div>
-    </div>`;
-  }).join('');
-}
-function confirmV(id){
-  const v = S.vendors.find(p=>p.id===id);
-  if(!v) return;
-  if(!v.confirmed.includes(S.user?.id)){
-    v.confirmed.push(S.user.id);
-    pushLog(`業者情報「${v.vendor}」を確認`);
-    toast('確認しました');
-  }
-  renderVendor();
+    </div>`).join('');
 }
 function addVendor(){
-  const name = document.getElementById('vName').value.trim();
-  const cont = document.getElementById('vCont').value.trim();
-  const imp  = document.getElementById('vImpact').value.trim();
-  const dl   = document.getElementById('vDeadline').value;
-  if(!name||!cont){ alert('業者名と内容を入力してください'); return; }
-  S.vendors.unshift({
-    id:S.nextVid++,
-    date:new Date().toLocaleDateString('ja-JP').replace(/\//g,'-'),
-    vendor:name, cont, impact:imp||'影響なし', deadline:dl, confirmed:[S.user.id]
-  });
-  ['vName','vCont','vImpact','vDeadline'].forEach(id=>document.getElementById(id).value='');
-  pushLog(`業者情報「${name}」を投稿`);
-  toast('投稿しました');
-  renderVendor();
+  const name=document.getElementById('vName').value.trim();
+  const cont=document.getElementById('vCont').value.trim();
+  if(!name||!cont){alert('業者名と内容を入力してください');return;}
+  const v={id:nextId++,date:new Date().toLocaleDateString('ja-JP'),
+    vendor:name,cont,impact:document.getElementById('vImpact').value.trim()||'影響なし',
+    deadline:document.getElementById('vDeadline').value};
+  SES.vendors.unshift(v);ls.set(K.VENDORS,SES.vendors);
+  ['vName','vCont','vImpact','vDeadline'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('lineMsgBox').style.display='none';
+  pushLog(`業者情報「${name}」を投稿`);showToast('投稿しました');renderVendor();
+}
+function deleteVendor(id){
+  if(!confirm('この業者情報を削除しますか？')) return;
+  SES.vendors=SES.vendors.filter(v=>v.id!==id);ls.set(K.VENDORS,SES.vendors);
+  showToast('削除しました');renderVendor();
+}
+function genLineMsg(){
+  const name=document.getElementById('vName').value.trim();
+  const cont=document.getElementById('vCont').value.trim();
+  const imp=document.getElementById('vImpact').value.trim();
+  const dl=document.getElementById('vDeadline').value;
+  if(!name||!cont){alert('業者名と内容を入力してください');return;}
+  const msg=`【業者情報】\n📅 ${new Date().toLocaleDateString('ja-JP')}\n🏢 ${name}\n\n📋 ${cont}\n\n👥 スタッフへの影響：${imp||'なし'}\n⏰ 対応期限：${dl||'なし'}`;
+  document.getElementById('lineMsg').textContent=msg;
+  document.getElementById('lineMsgBox').style.display='block';
+}
+function copyLineMsg(){
+  const t=document.getElementById('lineMsg').textContent;
+  navigator.clipboard.writeText(t).then(()=>showToast('📋 コピーしました'));
 }
 
-// ── マニュアル ───────────────────────────────
-function openDoc(name){
+// ═══════════════════════════════════════════
+// 10. マニュアル
+// ═══════════════════════════════════════════
+function renderManual(){
+  document.getElementById('manualList').innerHTML=CFG.cats.map(cat=>`
+    <div class="mcat">
+      <div class="mcat-title">${cat.icon} ${cat.name}</div>
+      ${cat.links.map(l=>`
+        <div class="mlink" onclick="openDoc('${l.url}','${l.text}')">
+          📄 ${l.text}
+          ${l.badge?`<span class="badge ${l.bc}" style="margin-left:6px;">${l.badge}</span>`:''}
+          <span style="margin-left:auto;color:var(--gray-400);font-size:12px;">▶</span>
+        </div>`).join('')}
+    </div>`).join('');
+}
+function openDoc(url,name){
   pushLog(`マニュアル「${name}」を開いた`);
-  const url = DOCS[name];
-  if(url){ window.open(url,'_blank'); }
-  else {
-    alert(`「${name}」\n\nマニュアルのURLを設定後に開けるようになります。\n管理者にお問い合わせください。`);
-  }
+  if(url) window.open(url,'_blank');
+  else alert(`「${name}」\n\nURLが未設定です。\n管理者ページ → マニュアル管理 からURLを設定してください。`);
 }
 
-// ── 報告・相談 ───────────────────────────────
+// ═══════════════════════════════════════════
+// 11. 報告・相談
+// ═══════════════════════════════════════════
 function sendReport(){
-  const cont = document.getElementById('rCont').value.trim();
-  if(!cont){ alert('内容を入力してください'); return; }
-  const r = {
-    id:Date.now(),
-    time:now(),
-    staff:S.user?.name,
+  const cont=document.getElementById('rCont').value.trim();
+  if(!cont){alert('内容を入力してください');return;}
+  const r={id:nextId++,time:now(),staff:SES.user?.name,
     type:document.getElementById('rType').value,
     urg:document.getElementById('rUrg').value,
-    cont,
-    stat:document.getElementById('rStat').value,
-  };
-  S.reports.unshift(r);
-  if(USE_GAS) gasPost({type:'report',...r});
+    cont,stat:document.getElementById('rStat').value};
+  SES.reports.unshift(r);ls.set(K.REPORTS,SES.reports);
   document.getElementById('rCont').value='';
   pushLog(`【${r.type}】を送信（緊急度：${r.urg}）`);
-  toast('送信しました');
-  renderReports();
+  showToast('送信しました');renderReports();
 }
 function renderReports(){
-  const el = document.getElementById('rList');
-  if(!S.reports.length){
-    el.innerHTML='<p style="color:var(--gray-400);font-size:13px;">まだ送信はありません</p>';
-    return;
-  }
-  const uc = {低:'bg',中:'bo',高:'br'};
-  el.innerHTML = S.reports.map(r=>`
-    <div class="ritem">
-      <div class="ritem-head">
-        <div>
-          <span class="badge bb">${r.type}</span>
-          <span class="badge ${uc[r.urg]}" style="margin-left:5px;">緊急度：${r.urg}</span>
+  const uc={低:'bg',中:'bo',高:'br'};
+  document.getElementById('rList').innerHTML=SES.reports.length
+    ?SES.reports.map(r=>`<div class="ritem">
+        <div class="ritem-head">
+          <div><span class="badge bb">${r.type}</span><span class="badge ${uc[r.urg]}" style="margin-left:5px;">${r.urg}</span></div>
+          <span class="badge bn">${r.stat}</span>
         </div>
-        <span class="badge bn">${r.stat}</span>
+        <div class="ritem-body">${r.cont}</div>
+        <div class="ritem-meta">${r.staff} ／ ${r.time}</div>
+      </div>`).join('')
+    :'<p style="color:var(--gray-400);font-size:13px;">まだ送信はありません</p>';
+}
+
+// ═══════════════════════════════════════════
+// 12. 管理者ページ
+// ═══════════════════════════════════════════
+function adminTab(t){
+  SES.adminTab=t;
+  document.querySelectorAll('.atab').forEach((el,i)=>{
+    const tabs=['stats','staff','cl','manual','sync'];
+    el.classList.toggle('active',tabs[i]===t);
+  });
+  document.querySelectorAll('.atab-pane').forEach(el=>el.classList.remove('active'));
+  document.getElementById('ap-'+t).classList.add('active');
+  if(t==='stats')  renderAdminStats();
+  if(t==='staff')  renderStaffAdmin();
+  if(t==='cl')     renderCLAdmin();
+  if(t==='manual') renderManualAdmin();
+}
+
+function renderAdmin(){
+  adminTab(SES.adminTab||'stats');
+}
+
+// ── 統計・ログ ──────────────────────────
+function renderAdminStats(){
+  const today=new Date().toLocaleDateString('ja-JP');
+  const todayLogs=SES.logs.filter(l=>l.time.startsWith(today));
+  const unique=[...new Set(todayLogs.map(l=>l.name))].length;
+  document.getElementById('aStats').innerHTML=`
+    <div class="stat"><div class="stat-n">${SES.logs.length}</div><div class="stat-l">総アクセス数</div></div>
+    <div class="stat"><div class="stat-n">${unique}</div><div class="stat-l">本日のアクセス者</div></div>
+    <div class="stat"><div class="stat-n">${SES.reports.length}</div><div class="stat-l">報告・相談件数</div></div>
+    <div class="stat"><div class="stat-n">${SES.vendors.length}</div><div class="stat-l">業者情報件数</div></div>`;
+  const uc={低:'bg',中:'bo',高:'br'};
+  document.getElementById('aLog').innerHTML=SES.logs.slice(0,30).map(l=>`
+    <tr><td>${l.time}</td><td>${l.name}</td><td>${l.action}</td></tr>`).join('')||
+    '<tr><td colspan="3" style="color:var(--gray-400);">ログはまだありません</td></tr>';
+  document.getElementById('aReports').innerHTML=SES.reports.length
+    ?SES.reports.map(r=>`<div class="ritem">
+        <div class="ritem-head">
+          <div><span class="badge bb">${r.type}</span><span class="badge ${uc[r.urg]}" style="margin-left:5px;">${r.urg}</span></div>
+          <span class="badge bn">${r.stat}</span>
+        </div>
+        <div class="ritem-body">${r.cont}</div>
+        <div class="ritem-meta">${r.staff} ／ ${r.time}</div>
+      </div>`).join('')
+    :'<p style="color:var(--gray-400);font-size:13px;">報告・相談はありません</p>';
+}
+
+// ── スタッフ管理 ─────────────────────────
+function renderStaffAdmin(){
+  document.getElementById('staffTbody').innerHTML=CFG.staff.map(s=>`
+    <tr id="srow-${s.id}">
+      <td>${s.name}</td>
+      <td><code style="background:var(--gray-100);padding:2px 6px;border-radius:4px;">${s.pin}</code></td>
+      <td><span class="badge ${s.role==='admin'?'bb':'bn'}">${s.role==='admin'?'管理者':'スタッフ'}</span></td>
+      <td>
+        <button class="btn-sec btn-sm" style="margin-right:4px;" onclick="editStaff(${s.id})">編集</button>
+        <button class="btn-danger btn-sm" onclick="deleteStaff(${s.id})">削除</button>
+      </td>
+    </tr>`).join('');
+}
+
+function addStaff(){
+  const name=document.getElementById('newStaffName').value.trim();
+  const pin=document.getElementById('newStaffPin').value.trim();
+  const role=document.getElementById('newStaffRole').value;
+  if(!name||pin.length!==4||!/^\d+$/.test(pin)){alert('名前と4桁の数字PINを入力してください');return;}
+  CFG.staff.push({id:nextId++,name,pin,role});
+  saveCFG();buildStaffDropdown();
+  document.getElementById('newStaffName').value='';document.getElementById('newStaffPin').value='';
+  showToast('スタッフを追加しました');renderStaffAdmin();
+}
+
+function editStaff(id){
+  const s=CFG.staff.find(x=>x.id===id);if(!s) return;
+  const row=document.getElementById('srow-'+id);
+  row.innerHTML=`
+    <td><input type="text" value="${s.name}" id="es-name-${id}" style="border:1.5px solid var(--blue-acc);border-radius:6px;padding:5px 8px;font-size:13px;width:100%;"></td>
+    <td><input type="text" value="${s.pin}" id="es-pin-${id}" maxlength="4" style="border:1.5px solid var(--blue-acc);border-radius:6px;padding:5px 8px;font-size:13px;width:70px;"></td>
+    <td><select id="es-role-${id}" style="border:1.5px solid var(--blue-acc);border-radius:6px;padding:5px 8px;font-size:13px;">
+      <option value="staff" ${s.role==='staff'?'selected':''}>スタッフ</option>
+      <option value="admin" ${s.role==='admin'?'selected':''}>管理者</option>
+    </select></td>
+    <td>
+      <button class="btn-pri btn-sm" style="margin-right:4px;" onclick="saveStaff(${id})">保存</button>
+      <button class="btn-sec btn-sm" onclick="renderStaffAdmin()">取消</button>
+    </td>`;
+}
+
+function saveStaff(id){
+  const name=document.getElementById(`es-name-${id}`).value.trim();
+  const pin=document.getElementById(`es-pin-${id}`).value.trim();
+  const role=document.getElementById(`es-role-${id}`).value;
+  if(!name||pin.length!==4||!/^\d+$/.test(pin)){alert('名前と4桁の数字PINを入力してください');return;}
+  const s=CFG.staff.find(x=>x.id===id);
+  s.name=name;s.pin=pin;s.role=role;
+  saveCFG();buildStaffDropdown();showToast('保存しました');renderStaffAdmin();
+}
+
+function deleteStaff(id){
+  if(!confirm('このスタッフを削除しますか？')) return;
+  CFG.staff=CFG.staff.filter(s=>s.id!==id);
+  saveCFG();buildStaffDropdown();showToast('削除しました');renderStaffAdmin();
+}
+
+// ── チェックリスト管理 ────────────────────
+function switchAdminCLTab(t){
+  SES.adminClTab=t;
+  document.querySelectorAll('#ap-cl .ctab').forEach((el,i)=>
+    el.classList.toggle('active',(i===0&&t==='morning')||(i===1&&t==='dialysis')));
+  renderCLAdmin();
+}
+
+function renderCLAdmin(){
+  const items=CFG[SES.adminClTab];
+  document.getElementById('clAdminList').innerHTML=items.length
+    ?items.map((item,i)=>`
+      <div style="display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid var(--gray-100);">
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:600;">${item.text}</div>
+          ${item.note?`<div style="font-size:11px;color:var(--gray-400);">${item.note}</div>`:''}
+        </div>
+        <button class="btn-danger btn-sm" onclick="deleteCLItem('${item.id}')">削除</button>
+      </div>`).join('')
+    :'<p style="color:var(--gray-400);font-size:13px;padding:10px 0;">項目がありません</p>';
+}
+
+function addCLItem(){
+  const text=document.getElementById('newCLText').value.trim();
+  if(!text){alert('項目名を入力してください');return;}
+  const note=document.getElementById('newCLNote').value.trim();
+  const id=(SES.adminClTab==='morning'?'m':'d')+'_'+nextId++;
+  CFG[SES.adminClTab].push({id,text,note});
+  saveCFG();
+  document.getElementById('newCLText').value='';document.getElementById('newCLNote').value='';
+  showToast('追加しました');renderCLAdmin();
+}
+
+function deleteCLItem(id){
+  if(!confirm('この項目を削除しますか？')) return;
+  const t=SES.adminClTab;
+  CFG[t]=CFG[t].filter(i=>i.id!==id);
+  saveCFG();showToast('削除しました');renderCLAdmin();
+}
+
+// ── マニュアル管理 ────────────────────────
+function renderManualAdmin(){
+  document.getElementById('manualAdminList').innerHTML=CFG.cats.map(cat=>`
+    <div style="margin-bottom:20px;border:1px solid var(--gray-200);border-radius:var(--r);padding:14px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <div style="font-weight:700;color:var(--navy);">${cat.icon} ${cat.name}</div>
+        <button class="btn-danger btn-sm" onclick="deleteCategory('${cat.id}')">カテゴリ削除</button>
       </div>
-      <div class="ritem-body">${r.cont}</div>
-      <div class="ritem-meta">${r.staff} ／ ${r.time}</div>
+      ${cat.links.map(l=>`
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--gray-100);">
+          <div style="flex:1;">
+            <div style="font-size:13px;">${l.text}</div>
+            <div style="font-size:11px;color:var(--gray-400);word-break:break-all;">${l.url||'URL未設定'}</div>
+          </div>
+          <button class="btn-sec btn-sm" onclick="editLink('${cat.id}','${l.id}')">編集</button>
+          <button class="btn-danger btn-sm" onclick="deleteLink('${cat.id}','${l.id}')">削除</button>
+        </div>`).join('')}
+      <div style="margin-top:10px;background:var(--blue-pale);border-radius:6px;padding:10px;" id="addLinkForm-${cat.id}">
+        <div class="fgroup"><label class="flabel">リンク名</label><input type="text" class="fctl" id="lname-${cat.id}" placeholder="例：月次報告書テンプレ"></div>
+        <div class="fgroup"><label class="flabel">URL（Google DriveのURLなど）</label><input type="text" class="fctl" id="lurl-${cat.id}" placeholder="https://..."></div>
+        <div class="add-form-row">
+          <div class="fgroup"><label class="flabel">バッジ（任意）</label><input type="text" class="fctl" id="lbadge-${cat.id}" placeholder="例：月次"></div>
+          <div class="fgroup" style="display:flex;align-items:flex-end;">
+            <button class="btn-pri" onclick="addLink('${cat.id}')">＋ リンク追加</button>
+          </div>
+        </div>
+      </div>
     </div>`).join('');
 }
 
-// ── 管理者ページ ─────────────────────────────
-function renderAdmin(){
-  const todayStr = new Date().toLocaleDateString('ja-JP');
-  const todayLogs = S.logs.filter(l=>l.time.startsWith(todayStr));
-  const unique = [...new Set(todayLogs.map(l=>l.name))].length;
-
-  document.getElementById('aStats').innerHTML=`
-    <div class="stat"><div class="stat-n">${S.logs.length}</div><div class="stat-l">総アクセス数</div></div>
-    <div class="stat"><div class="stat-n">${unique}</div><div class="stat-l">本日のアクセス者数</div></div>
-    <div class="stat"><div class="stat-n">${S.reports.length}</div><div class="stat-l">報告・相談件数</div></div>
-    <div class="stat"><div class="stat-n">${S.vendors.length}</div><div class="stat-l">業者情報件数</div></div>`;
-
-  const tb = document.getElementById('aLog');
-  tb.innerHTML = S.logs.length
-    ? S.logs.slice(0,30).map(l=>`
-        <tr><td>${l.time}</td><td>${l.name}</td><td>${l.action}</td></tr>`).join('')
-    : '<tr><td colspan="3" style="color:var(--gray-400);">ログはまだありません</td></tr>';
-
-  const uc={低:'bg',中:'bo',高:'br'};
-  const ar = document.getElementById('aReports');
-  ar.innerHTML = S.reports.length
-    ? S.reports.map(r=>`
-        <div class="ritem">
-          <div class="ritem-head">
-            <div>
-              <span class="badge bb">${r.type}</span>
-              <span class="badge ${uc[r.urg]}" style="margin-left:5px;">${r.urg}</span>
-            </div>
-            <span class="badge bn">${r.stat}</span>
-          </div>
-          <div class="ritem-body">${r.cont}</div>
-          <div class="ritem-meta">${r.staff} ／ ${r.time}</div>
-        </div>`).join('')
-    : '<p style="color:var(--gray-400);font-size:13px;">報告・相談はありません</p>';
+function addCategory(){
+  const name=document.getElementById('newCatName').value.trim();
+  const icon=document.getElementById('newCatIcon').value.trim()||'📄';
+  if(!name){alert('カテゴリ名を入力してください');return;}
+  CFG.cats.push({id:'cat_'+nextId++,name,icon,links:[]});
+  saveCFG();
+  document.getElementById('newCatName').value='';document.getElementById('newCatIcon').value='';
+  showToast('カテゴリを追加しました');renderManualAdmin();
 }
 
-// ── モバイルサイドバー ───────────────────────
-function openSb(){ document.getElementById('sb').classList.add('open'); document.getElementById('overlay').classList.add('open'); }
-function closeSb(){ document.getElementById('sb').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
+function deleteCategory(catId){
+  if(!confirm('このカテゴリとリンクをすべて削除しますか？')) return;
+  CFG.cats=CFG.cats.filter(c=>c.id!==catId);
+  saveCFG();showToast('削除しました');renderManualAdmin();
+}
 
-// ── ユーティリティ ───────────────────────────
-function now(){ return new Date().toLocaleString('ja-JP'); }
-function pushLog(action){ S.logs.unshift({time:now(), name:S.user?.name||'—', action}); }
-function toast(msg){
+function addLink(catId){
+  const text=document.getElementById('lname-'+catId).value.trim();
+  if(!text){alert('リンク名を入力してください');return;}
+  const url=document.getElementById('lurl-'+catId).value.trim();
+  const badge=document.getElementById('lbadge-'+catId).value.trim();
+  const cat=CFG.cats.find(c=>c.id===catId);
+  cat.links.push({id:'l_'+nextId++,text,url,badge,bc:badge?'bo':''});
+  saveCFG();showToast('リンクを追加しました');renderManualAdmin();renderManual();
+}
+
+function editLink(catId,linkId){
+  const cat=CFG.cats.find(c=>c.id===catId);
+  const l=cat.links.find(x=>x.id===linkId);
+  const newText=prompt('リンク名を入力',l.text);
+  if(newText===null) return;
+  const newUrl=prompt('URLを入力（Google DriveのURLなど）',l.url);
+  if(newUrl===null) return;
+  l.text=newText.trim()||l.text;l.url=newUrl.trim();
+  saveCFG();showToast('更新しました');renderManualAdmin();renderManual();
+}
+
+function deleteLink(catId,linkId){
+  if(!confirm('このリンクを削除しますか？')) return;
+  const cat=CFG.cats.find(c=>c.id===catId);
+  cat.links=cat.links.filter(l=>l.id!==linkId);
+  saveCFG();showToast('削除しました');renderManualAdmin();
+}
+
+// ── データ管理 ────────────────────────────
+function exportJson(){
+  const cfg={staff:CFG.staff,morning:CFG.morning,dialysis:CFG.dialysis,cats:CFG.cats};
+  const blob=new Blob([JSON.stringify(cfg,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`portal-settings-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();showToast('ダウンロードしました');
+}
+
+function importJson(e){
+  const file=e.target.files[0];if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const cfg=JSON.parse(ev.target.result);
+      if(cfg.staff) {CFG.staff=cfg.staff;ls.set(K.STAFF,cfg.staff);}
+      if(cfg.morning){CFG.morning=cfg.morning;ls.set(K.MORNING,cfg.morning);}
+      if(cfg.dialysis){CFG.dialysis=cfg.dialysis;ls.set(K.DIALYSIS,cfg.dialysis);}
+      if(cfg.cats){CFG.cats=cfg.cats;ls.set(K.CATS,cfg.cats);}
+      buildStaffDropdown();showToast('✅ 設定を読み込みました');
+    } catch{alert('JSONファイルの読み込みに失敗しました');}
+  };
+  reader.readAsText(file);
+  e.target.value='';
+}
+
+function resetToDefaults(){
+  if(!confirm('すべての設定を初期値に戻しますか？\nスタッフ・チェックリスト・マニュアルがリセットされます。')) return;
+  CFG={staff:[...DEFAULTS.staff],morning:[...DEFAULTS.morning],
+    dialysis:[...DEFAULTS.dialysis],cats:JSON.parse(JSON.stringify(DEFAULTS.categories))};
+  saveCFG();buildStaffDropdown();showToast('初期設定に戻しました');renderAdmin();
+}
+
+// ═══════════════════════════════════════════
+// 13. モバイル・ユーティリティ
+// ═══════════════════════════════════════════
+function openSb(){document.getElementById('sb').classList.add('open');document.getElementById('overlay').classList.add('open');}
+function closeSb(){document.getElementById('sb').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
+function toggleAddForm(id){document.getElementById(id).classList.toggle('open');}
+function now(){return new Date().toLocaleString('ja-JP');}
+function pushLog(action){
+  SES.logs.unshift({time:now(),name:SES.user?.name||'—',action});
+  if(SES.logs.length>100) SES.logs=SES.logs.slice(0,100);
+  ls.set(K.LOGS,SES.logs);
+}
+function showToast(msg){
   const t=document.getElementById('toast');
-  t.textContent='✅ '+msg; t.classList.add('show');
+  t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
-function gasPost(data){
-  fetch(GAS_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json'}}).catch(()=>{});
+function tickDate(){
+  const d=new Date();const days=['日','月','火','水','木','金','土'];
+  const el=document.getElementById('pdate');
+  if(el) el.textContent=`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${days[d.getDay()]}）`;
 }
 
+// ═══════════════════════════════════════════
+// 14. 初期化
+// ═══════════════════════════════════════════
+function init(){
+  checkSyncUrl();
+  initClState();
+  buildStaffDropdown();
+  tickDate();setInterval(tickDate,30000);
+  document.getElementById('pinIn').addEventListener('keydown',e=>{if(e.key==='Enter') doLogin();});
+}
 init();
 </script>
 </body>
